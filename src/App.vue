@@ -8,7 +8,8 @@
 </template>
 
 <script>
-import Navbar from './components/Navbar';
+import Navbar from './components/AppNavbar';
+// import Api from './service/Api';
 
 export default {
   name: 'App',
@@ -16,7 +17,16 @@ export default {
     Navbar
   },
   data: () => ({
-    //
+    // screams: {}
   }),
+  mounted() {
+    this.$store.dispatch('GET_SCREAMS')
+  }
 };
 </script>
+
+<style lang="scss">
+@import './src/assets/main.scss';
+</style>
+
+
