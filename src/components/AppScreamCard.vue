@@ -4,11 +4,7 @@
     <v-row
     >
       <v-col offset="1" cols="10" offset-sm="0" sm="3">
-        <v-img
-          height="200"
-          width="200"
-          :src="scream.userImage"
-        ></v-img>
+        <v-img class="card-img" :src="scream.userImage"></v-img>
       </v-col>
       <v-col cols="12" sm="8">
           <div>
@@ -65,7 +61,3 @@ export default {
     }
 }
 </script>
-
-<style>
-
-</style>

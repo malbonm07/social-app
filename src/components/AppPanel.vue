@@ -1,12 +1,12 @@
 <template>
-    <v-card color="blue-grey darken-2" min-height="600">
+    <v-card color="blue-grey darken-2" min-height="500">
         <v-toolbar flat height="200" color="blue-grey darken-4">
             <v-row>
                 <v-col class="d-flex justify-center">
                     <v-icon size="100" color="white">{{avatar}}</v-icon>
                 </v-col>
                 <v-col cols="12">
-                    <div class="display-1 font-weight-bold text-uppercase white--text text-center">{{name}}</div>
+                    <div class="headline font-weight-bold text-capitalize white--text text-center">{{name}}</div>
                 </v-col>
             </v-row>
         </v-toolbar>
