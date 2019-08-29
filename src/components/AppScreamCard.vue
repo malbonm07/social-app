@@ -1,8 +1,6 @@
 <template>
-  <v-card
-  max-height="800" max-width="800" class="mx-auto mb-5 pa-3">
-    <v-row
-    >
+  <v-card max-height="800" max-width="800" class="mx-auto mb-5 pa-3">
+    <v-row>
       <v-col offset="1" cols="10" offset-sm="0" sm="3">
         <v-img class="card-img" :src="scream.userImage"></v-img>
       </v-col>

@@ -1,5 +1,5 @@
 <template>
-    <v-btn :type="type">
+    <v-btn :type="type" @click="$emit('click')">
         <slot v-if="status !== 'loading'">{{name}}</slot>
         <slot v-else>
             <v-progress-circular indeterminate color="primary" size="24"

@@ -18,10 +18,9 @@ export default new Vuex.Store({
   },
   mutations: {
     SET_SCREAMS: (state, data) => {state.screams = data},
-    AUTH_SUCCESS(state, token) {
-      state.status = 'success'
+    AUTH_SUCCESS: (state, token) => {
+      state.authUser = true
       state.token = token
-      state.user = user
     },
     SET_STATUS: (state, value) => {state.status = value}
   },
@@ -31,18 +30,24 @@ export default new Vuex.Store({
       const data = response.data;
       commit('SET_SCREAMS', data)
     },
-    SIGN_IN: (context, {email, password}) => Api().post('login', { email, password })
-    .then((res, reject) => {
-      localStorage.setItem('FBidToken', `Bearer ${res.data.token}`)
-      axios.defaults.headers.common['Authorization'] = res.data.token
-      commit('AUTH_SUCCESS', res.data.token);
-      resolve(res);
+    SIGN_IN: ({context, commit}, {email, password}) => new Promise((resolve, reject) => {
+      Api().post('login', { email, password })
+      .then((res) => {
+        console.log(res)
+        localStorage.setItem('FBidToken', `Bearer ${res.data.token}`)
+        axios.defaults.headers.common['Authorization'] = res.data.token
+        commit('AUTH_SUCCESS', res.data.token);
+        resolve();
+      })
+      .catch((error) => {
+        reject(error)
+      })
     }),
     SIGN_UP: ({context, commit}, formNewUser) => new Promise((resolve, reject) => {
       Api().post('signup', formNewUser)
       .then((res) => {
         localStorage.setItem('FBidToken', `Bearer ${res.data.token}`);
-        resolve();
+        resolve(res);
       })
       .catch((error) => {
         reject(error);
