@@ -12,19 +12,25 @@
             <span class="mr-2">Home</span>
         </v-btn>
 
-        <v-btn text exact to="/login">
-            <v-icon left>{{svgLogin}}</v-icon>
-            <span class="mr-2">Login</span>
-        </v-btn>
-        
-        <v-btn text exact to="/signup">
-            <v-icon left>{{svgLogout}}</v-icon>
-            <span class="mr-2">SignUp</span>
-        </v-btn>
+        <div v-if="isAuthenticated === false">
+            <v-btn text exact to="/login">
+                <v-icon left>{{svgLogin}}</v-icon>
+                <span class="mr-2">Login</span>
+            </v-btn>
+            
+            <v-btn text exact to="/signup">
+                <v-icon left>{{svgLogout}}</v-icon>
+                <span class="mr-2">SignUp</span>
+            </v-btn>
+        </div>
     </v-app-bar>
 </template>
 
 <script>
+//VUEX
+import { mapGetters } from 'vuex';
+
+//SVG ICONS
 import { mdiAccountPlusOutline } from '@mdi/js';
 import { mdiHome } from '@mdi/js';
 import { mdiLogin } from '@mdi/js';
@@ -35,7 +41,10 @@ export default {
         svgHome: mdiHome,
         svgLogin: mdiLogin,
         svgLogout: mdiAccountPlusOutline
-    })
+    }),
+    computed: {
+        ...mapGetters(['isAuthenticated'])
+    }
 }
 </script>
 

@@ -27,7 +27,6 @@
 </template>
 
 <script>
-
 // COMPONENTS
 import AppButton from '@/components/AppButton';
 
@@ -68,7 +67,6 @@ export default {
                 password: this.loginUser.password
             })
             .then(() => {
-                this.$store.state.status = '';
                 this.$router.push({name: 'home'})
             })
             .catch((error) => {
@@ -77,6 +75,9 @@ export default {
                 this.$store.state.status = '';
             })
         },
+    },
+    beforeDestroy() {
+        this.$store.state.status = '';
     }
 }
 </script>

@@ -11,8 +11,9 @@
 </template>
 
 <script>
-import AppLoginForm from '@/components/Form/AppLoginForm';
+// COMPONENTS
 import AppPanel from '@/components/AppPanel';
+import AppLoginForm from '@/components/Form/AppLoginForm';
 
 export default {
     components: {

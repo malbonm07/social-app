@@ -91,7 +91,6 @@ export default {
             this.$store.state.status = 'loading'
             this.$store.dispatch('SIGN_UP', this.formNewUser)
             .then(() => {
-                this.$store.state.status = ''
                 this.$router.push({ name: 'home'});
             })
             .catch((error) => {
@@ -100,5 +99,8 @@ export default {
             })
         },
     },
+    beforeDestroy() {
+        this.$store.state.status = '';
+    }
 }
 </script>

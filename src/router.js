@@ -5,6 +5,7 @@ import store from './store.js'
 
 Vue.use(Router)
 
+
 const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
@@ -29,7 +30,7 @@ const router = new Router({
 
 router.beforeEach((to, from, next) => {
   if(to.matched.some(route => route.meta.requiresAuth)) {
-    if(store.getters.isLoggedIn) {
+    if(store.getters.isAuthenticated) {
       next();
       return
     }

@@ -7,13 +7,15 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    path: '',
     status: null,
-    token: localStorage.getItem('token') || '',
-    authUser: false,
-    screams: []
+    token: localStorage.getItem('FBidToken') || '',
+    authId: false,
+    screams: [],
+    user: {}
   },
   getters: {
-    isLoggedIn: state => !!state.token,
+    isAuthenticated: state => !!state.token,
     status: state => state.status
   },
   mutations: {
@@ -22,7 +24,10 @@ export default new Vuex.Store({
       state.authUser = true
       state.token = token
     },
-    SET_STATUS: (state, value) => {state.status = value}
+    SET_STATUS: (state, value) => {state.status = value},
+    SET_AUTH_USER: (state, decodedToken) => state.authId = decodedToken.user_id,
+    SET_USER: (state, data) => state.user = data,
+    SET_LAND: (state, pathName) => state.path = pathName
   },
   actions: {
     GET_SCREAMS: async ({commit}) => {
@@ -33,10 +38,10 @@ export default new Vuex.Store({
     SIGN_IN: ({context, commit}, {email, password}) => new Promise((resolve, reject) => {
       Api().post('login', { email, password })
       .then((res) => {
-        console.log(res)
         localStorage.setItem('FBidToken', `Bearer ${res.data.token}`)
         axios.defaults.headers.common['Authorization'] = res.data.token
         commit('AUTH_SUCCESS', res.data.token);
+        commit('SET_USER', res.data)
         resolve();
       })
       .catch((error) => {
@@ -53,8 +58,19 @@ export default new Vuex.Store({
         reject(error);
       })
     }),
+    FETCH_AUTH_USER: ({commit}) =>  {
+      Api().get('/user')
+      .then((res) => {
+        commit('SET_USER', res.data)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+    },
+    AUTH_USER: ({ commit }, decodedToken) => {commit('SET_AUTH_USER', decodedToken)},
     STATUS: ({commit}, value) => {
       commit('SET_STATUS', value)
-    }
+    },
+    TO_LAND: ({commi}, pathName) => {commit('SET_LAND', pathName)}
   }
 })
