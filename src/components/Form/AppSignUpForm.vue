@@ -32,11 +32,8 @@
             counter
             @click:append="showPassword = !showPassword"
         ></v-text-field>
-        <div v-if="error" class="subtitle1 text-center text-capitalize red--text">
-            <p v-if="error.handle">Name {{error.handle}}.</p>
-            <p v-if="error.email">Email {{error.email}}.</p>
-            <p v-if="error.password">Password {{error.password}}.</p>
-            <p v-if="error.confirmPassword">{{error.confirmPassword}}.</p>
+        <div v-if="errors" class="subtitle1 text-center text-capitalize red--text">
+            <p v-for="(errorMessage, i) in errors" :key="i">{{errorMessage}}</p>
             <span>Already have an account? <router-link to="/login">Sign In Here</router-link></span>
         </div>
         <div class="mt-5">
@@ -67,7 +64,6 @@ export default {
     mixins: [reset],
     data: () => ({
         showPassword: false,
-        error: null,
         formNewUser: {
             email: '',
             password: '',
@@ -88,19 +84,14 @@ export default {
     }),
     methods: {
         loginHandlerSubmit() {
-            this.$store.state.status = 'loading'
             this.$store.dispatch('SIGN_UP', this.formNewUser)
             .then(() => {
                 this.$router.push({ name: 'home'});
             })
-            .catch((error) => {
-                this.error = error.response.data
-                this.$store.state.status = ''
-            })
         },
     },
-    beforeDestroy() {
-        this.$store.state.status = '';
-    }
+    computed: {
+        ...mapGetters(['errors'])
+    },
 }
 </script>

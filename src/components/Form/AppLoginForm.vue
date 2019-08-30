@@ -16,8 +16,8 @@
             counter
             @click:append="showPassword = !showPassword"
         ></v-text-field>
-        <div v-if="error" class="subtitle1 text-center text-capitalize red--text">
-            {{error.general}}. <span>Don't have an account? <router-link to="/signup">Sign Up Here</router-link></span>
+        <div v-if="errors" class="subtitle1 text-center text-capitalize red--text">
+            {{errors.general}}. <span>Don't have an account? <router-link to="/signup">Sign Up Here</router-link></span>
         </div>
         <div class="mt-5">
             <AppButton class="mr-4" type="submit" name="Submit"></AppButton>
@@ -37,6 +37,9 @@ import { reset } from '@/mixins/mixins';
 import { mdiEyeOutline } from '@mdi/js';
 import { mdiEyeOffOutline } from '@mdi/js';
 
+//VUEX
+import { mapGetters } from 'vuex';
+
 export default {
     components: {
         AppButton
@@ -44,8 +47,6 @@ export default {
     mixins: [reset],
     data: () => ({
         showPassword: false,
-        error: null,
-        loading: false,
         loginUser: {
             email: '',
             password: ''
@@ -61,23 +62,17 @@ export default {
     }),
     methods: {
         loginHandlerSubmit() {
-            this.$store.state.status = 'loading';
             this.$store.dispatch('SIGN_IN', {
                 email: this.loginUser.email,
                 password: this.loginUser.password
             })
             .then(() => {
-                this.$router.push({name: 'home'})
-            })
-            .catch((error) => {
-                console.log(error)
-                this.error = error.response
-                this.$store.state.status = '';
+                this.$router.push({name: 'home'});
             })
         },
     },
-    beforeDestroy() {
-        this.$store.state.status = '';
-    }
+    computed: {
+        ...mapGetters(['errors'])
+    },
 }
 </script>
