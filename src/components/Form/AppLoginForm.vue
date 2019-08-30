@@ -17,7 +17,8 @@
             @click:append="showPassword = !showPassword"
         ></v-text-field>
         <div v-if="errors" class="subtitle1 text-center text-capitalize red--text">
-            {{errors.general}}. <span>Don't have an account? <router-link to="/signup">Sign Up Here</router-link></span>
+            <p v-for="(errorMessage, i) in errors" :key="i">{{errorMessage}}</p>
+            <span>Don't have an account? <router-link to="/signup">Sign Up Here</router-link></span>
         </div>
         <div class="mt-5">
             <AppButton class="mr-4" type="submit" name="Submit"></AppButton>

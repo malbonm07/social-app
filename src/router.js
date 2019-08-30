@@ -5,6 +5,13 @@ import store from './store.js'
 
 Vue.use(Router)
 
+const ifNotAuthenticated = (to, from, next) => {
+  if (!store.getters.isAuthenticated) {
+    next()
+    return
+  }
+  next('/')
+}
 
 const router = new Router({
   mode: 'history',
@@ -18,11 +25,13 @@ const router = new Router({
     {
       path: '/login',
       name: 'login',
+      beforeEnter: ifNotAuthenticated,
       component: () => import(/* webpackChunkName: "about" */ './views/Login.vue')
     },
     {
       path: '/signup',
       name: 'signup',
+      beforeEnter: ifNotAuthenticated,
       component: () => import(/* webpackChunkName: "about" */ './views/Signup.vue')
     }
   ]

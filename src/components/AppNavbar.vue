@@ -12,7 +12,7 @@
             <span class="mr-2">Home</span>
         </v-btn>
 
-        <div v-if="isAuthenticated === false">
+        <div v-if="!isAuthenticated">
             <v-btn text exact to="/login">
                 <v-icon left>{{svgLogin}}</v-icon>
                 <span class="mr-2">Login</span>
