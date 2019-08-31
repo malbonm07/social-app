@@ -41,6 +41,10 @@ import { mdiHome } from '@mdi/js';
 import { mdiLogin } from '@mdi/js';
 import { mdiLogout } from '@mdi/js';
 import { mdiExitToApp } from '@mdi/js';
+import { mdiFeather } from '@mdi/js';
+import { mdiBellOutline } from '@mdi/js';
+import { mdiBellPlusOutline } from '@mdi/js';
+import { mdiBellPlus } from '@mdi/js';
 
 export default {
     data: () => ({

@@ -93,11 +93,27 @@ export default new Vuex.Store({
       .catch((error) => {
       })
     },
+    UPLOAD_IMAGE: ({commit, dispatch}, formData) => {
+      Api().post('user/image', formData)
+      .then((res) => {
+        dispatch('FETCH_AUTH_USER')
+        console.log(res)
+      })
+      .catch((error) => console.log(error))
+    },
     AUTH_SUCCESS: ({commit}, FBidToken) => {
       localStorage.setItem('FBidToken', FBidToken)
       axios.defaults.headers.common['Authorization'] = FBidToken
       commit('SET_AUTHORIZATION', FBidToken);
     },
+    EDIT_USER_DETAILS: ({dispatch}, userDetails) => new Promise((resolve, err) => {
+      Api().post('user', userDetails)
+      .then((res) => {
+        dispatch('FETCH_AUTH_USER');
+        resolve(res)
+      })
+      .catch((error) => console.log(error))
+    }),
     AUTH_USER: ({ commit }, token) => {commit('SET_AUTHORIZATION', token)},
     STATUS: ({commit}, value) => {
       commit('SET_STATUS', value)

@@ -1,6 +1,6 @@
 <template>
   <v-container fluid pa-3>
-    <v-row no-gutters>
+    <v-row>
       <v-col cols="12" sm="7">
         <v-card class="mb-5" v-for="scream in screams" :key="scream.screamId">
           <AppScreamContentLoader v-if="status === 'loading'"></AppScreamContentLoader>
@@ -43,13 +43,4 @@ export default {
   }
 };
 </script>
-
-<style>
-.center {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-</style>
 
