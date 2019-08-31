@@ -1,8 +1,17 @@
 <template>
-    <v-card>
+    <div v-if="data">
         <v-row>
             <v-col offset="1" cols="10">
                 <v-img class="card-img" :src="data.imageUrl"></v-img>
+                <input type="file" id="imageInput" hidden @change="handleImageChange">
+                <v-tooltip bottom>
+                    <template v-slot:activator="{ on }">
+                    <v-btn class="mx-2" fab dark small color="pink" absolute right @click="editImage" v-on="on">
+                    <v-icon dark>{{svg.pencil}}</v-icon>
+                    </v-btn>
+                    </template>
+                    <span>Edit Image</span>
+                </v-tooltip>
             </v-col>
             <v-col cols="12">
                 <div>
@@ -29,7 +38,7 @@
                             <div class="text-center">
                                 <v-icon>{{svg.calendar}}</v-icon>
                                 <span>
-                                    {{data.createdAt}}
+                                    {{data.createdAt | day}}
                                 </span>
                             </div>
                         </v-col>
@@ -37,7 +46,7 @@
                 </div>
             </v-col>
         </v-row>
-    </v-card>
+    </div>
 </template>
 
 <script>
@@ -51,7 +60,6 @@ export default {
     props: {
         data: {
             type: Object,
-            required: true
         }
     },
     data: () => ({
@@ -61,10 +69,15 @@ export default {
             calendar: mdiCalendar,
             pencil: mdiPencil
         }
-    })
+    }),
+    methods: {
+        handleImageChange(event) {
+            const image = event.target.files[0];
+        },
+        editImage() {
+            const imageInput = document.getElementById('imageInput');
+            imageInput.click();
+        }
+    }
 }
 </script>
-
-<style>
-
-</style>

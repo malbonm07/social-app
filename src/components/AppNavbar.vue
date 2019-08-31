@@ -7,9 +7,14 @@
 
         <v-spacer></v-spacer>
 
-        <v-btn text exact to="/">
+        <v-btn text exact to="/" class="mr-2">
             <v-icon left>{{svgHome}}</v-icon>
-            <span class="mr-2">Home</span>
+            <span>Home</span>
+        </v-btn>
+
+        <v-btn v-if="isAuthenticated" text exact @click="logout">
+            <v-icon left>{{svgExit}}</v-icon>
+            <span>Logout</span>
         </v-btn>
 
         <div v-if="!isAuthenticated">
@@ -35,13 +40,20 @@ import { mdiAccountPlusOutline } from '@mdi/js';
 import { mdiHome } from '@mdi/js';
 import { mdiLogin } from '@mdi/js';
 import { mdiLogout } from '@mdi/js';
+import { mdiExitToApp } from '@mdi/js';
 
 export default {
     data: () => ({
         svgHome: mdiHome,
         svgLogin: mdiLogin,
-        svgLogout: mdiAccountPlusOutline
+        svgLogout: mdiAccountPlusOutline,
+        svgExit: mdiExitToApp
     }),
+    methods: {
+        logout() {
+            this.$store.dispatch('LOGOUT_USER')
+        }
+    },
     computed: {
         ...mapGetters(['isAuthenticated'])
     }

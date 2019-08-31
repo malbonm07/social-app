@@ -5,6 +5,10 @@ import store from './store'
 import vuetify from './plugins/vuetify';
 import axios from 'axios';
 
+import day from './filters/day';
+
+Vue.use(day);
+
 import jwtDecode from 'jwt-decode';
 
  const token = localStorage.FBidToken
@@ -14,15 +18,16 @@ import jwtDecode from 'jwt-decode';
    if(decodedToken.exp * 1000 > Date.now()) {
     axios.defaults.headers.common['Authorization'] = token;
     store.dispatch('AUTH_USER', token);
+    store.dispatch('STATUS', 'loading')
    }
    if(decodedToken.exp * 1000 < Date.now()) {
      store.dispatch('LOGOUT_USER');
      store.state.path = '/login';
    }
  }
- if(!token) {
-   store.state.path = '/signup';
- }
+//  if(!token) {
+//    store.state.path = '/signup';
+//  }
 
 Vue.config.productionTip = false
 
@@ -34,8 +39,9 @@ new Vue({
   beforeCreate() {
     if (!!store.state.token) {
       this.$store.dispatch('FETCH_AUTH_USER');
-    } else {
-      router.push(store.state.path)
-    }
+    } 
+    // else {
+    //   router.push(store.state.path)
+    // }
   },
 }).$mount('#app')

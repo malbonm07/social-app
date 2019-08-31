@@ -1,5 +1,5 @@
 <template>
-  <v-card max-height="800" max-width="800" class="mx-auto mb-5 pa-3">
+  <div v-if="scream" max-height="800" max-width="800" class="mx-auto pa-3">
     <v-row>
       <v-col offset="1" cols="10" offset-sm="0" sm="3">
         <v-img class="card-img" :src="scream.userImage"></v-img>
@@ -9,7 +9,7 @@
             <v-row>
                 <v-col cols="12">
                     <h3 class="title">{{scream.userHandle}}</h3>
-                    <p class="font-weight-light grey--text text--darken-1 body-2">{{scream.createdAt | timeFromNow}}</p>
+                    <p class="font-weight-light grey--text text--darken-1 body-2">{{scream.createdAt | day}}</p>
                 </v-col>
                 <v-col class="text-left" cols="12">
                     <div class="font-weight-regular text-truncate">
@@ -30,7 +30,7 @@
           </div>
       </v-col>
     </v-row>
-  </v-card>
+  </div>
 </template>
 
 <script>
@@ -51,11 +51,5 @@ export default {
       svgComment: mdiCommentMultipleOutline,
       svgHeartOut: mdiHeartOutline
     }),
-    filters: {
-        timeFromNow(date) {
-            dayjs.extend(relativeTime);
-            return dayjs(date).fromNow();
-        }
-    }
 }
 </script>

@@ -9,7 +9,7 @@ export default new Vuex.Store({
   state: {
     error: null,
     path: '',
-    status: null,
+    status: 'loading',
     token: localStorage.getItem('FBidToken') || '',
     screams: [],
     user: {}
@@ -18,15 +18,23 @@ export default new Vuex.Store({
     isAuthenticated: state => !!state.token,
     status: state => state.status,
     errors: state => state.error,
-    userCredentials: state => state.user.credentials
+    userCredentials: state => state.user.credentials,
+    screamList: state => state.screams.slice(0, 10)
   },
   mutations: {
-    SET_SCREAMS: (state, data) => {state.screams = data},
+    SET_SCREAMS: (state, data) => {
+      state.screams = data
+      state.status = false
+    },
     SET_AUTHORIZATION: (state, token) => {
       state.token = token
+      state.status = false
     },
     SET_STATUS: (state, value) => {state.status = value},
-    SET_USER: (state, data) => state.user = data,
+    SET_USER: (state, data) => {
+      state.user = data; 
+      state.status = false;
+    },
     SET_LAND: (state, pathName) => state.path = pathName,
     SET_ERROR: (state, error) => state.error = error,
     SET_USER_UNAUTHENTICATED: (state, emptyData) => {
@@ -35,7 +43,8 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    GET_SCREAMS: async ({commit}) => {
+    GET_SCREAMS: async ({commit, dispatch}) => {
+      dispatch('STATUS', 'loading')
       const response = await Api().get('screams');
       const data = response.data;
       commit('SET_SCREAMS', data)
@@ -70,12 +79,13 @@ export default new Vuex.Store({
         commit('SET_STATUS', false);
       })
     }),
-    LOGOUT_USER: ({commi}) => {
+    LOGOUT_USER: ({commit}) => {
       localStorage.removeItem('FBidToken');
       delete axios.defaults.headers.common['Authorization'];
       commit('SET_USER_UNAUTHENTICATED', {})
     },
     FETCH_AUTH_USER: ({commit}) =>  {
+      commit('SET_STATUS', 'loading');
       Api().get('user')
       .then((res) => {
         commit('SET_USER', res.data)
