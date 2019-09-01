@@ -18,7 +18,6 @@ import jwtDecode from 'jwt-decode';
    if(decodedToken.exp * 1000 > Date.now()) {
     axios.defaults.headers.common['Authorization'] = token;
     store.dispatch('AUTH_USER', token);
-    store.dispatch('STATUS', 'loading')
    }
    if(decodedToken.exp * 1000 < Date.now()) {
      store.dispatch('LOGOUT_USER');

@@ -5,12 +5,14 @@
             :rules="handleRules"
             label="Name"
             required
+            :loading="loadingUser"
         ></v-text-field>
         <v-text-field
             v-model="formNewUser.email"
             :rules="emailRules"
             label="E-mail"
             required
+            :loading="loadingUser"
         ></v-text-field>
         <v-text-field
             v-model="formNewUser.password"
@@ -20,6 +22,7 @@
             label="Password"
             hint="At least 6 char acters"
             counter
+            :loading="loadingUser"
             @click:append="showPassword = !showPassword"
         ></v-text-field>
         <v-text-field
@@ -30,6 +33,7 @@
             label="Confirm Password"
             hint="At least 6 char acters"
             counter
+            :loading="loadingUser"
             @click:append="showPassword = !showPassword"
         ></v-text-field>
         <div v-if="errors" class="subtitle1 text-center text-capitalize red--text">
@@ -37,8 +41,12 @@
             <span>Already have an account? <router-link to="/login">Sign In Here</router-link></span>
         </div>
         <div class="mt-5">
-            <AppButton class="mr-4" type="submit" name="Sign Up"></AppButton>
-            <AppButton @click="reset" name="Clear"></AppButton>
+            <v-btn type="submit" :loading="loadingUser" class="mr-4">
+                Sign Up
+            </v-btn>
+            <v-btn @click="reset" :disabled="loadingUser">
+                Clear
+            </v-btn>
         </div>
     </form>
 </template>
@@ -51,16 +59,10 @@ import { mdiEyeOffOutline } from '@mdi/js';
 //MIXINS
 import { reset } from '@/mixins/mixins';
 
-//COMPONENTS
-import AppButton from '@/components/AppButton';
-
 //VUEX
 import { mapGetters } from 'vuex';
 
 export default {
-    components: {
-        AppButton
-    },
     mixins: [reset],
     data: () => ({
         showPassword: false,
@@ -91,7 +93,10 @@ export default {
         },
     },
     computed: {
-        ...mapGetters(['errors'])
+        ...mapGetters(['errors', 'loadingUser'])
     },
+    beforeDestroy() {
+        this.$store.dispatch('CLEAR_ERROR')
+    }
 }
 </script>

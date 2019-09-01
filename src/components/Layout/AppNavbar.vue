@@ -18,10 +18,7 @@
             <span>Home</span>
         </v-btn>
 
-        <v-btn v-if="isAuthenticated" text exact @click="logout">
-            <v-icon left>{{svg.exit}}</v-icon>
-            <span>Logout</span>
-        </v-btn>
+        <AppLogoutModal v-if="isAuthenticated"></AppLogoutModal>
 
         <div v-if="!isAuthenticated">
             <v-btn text exact to="/login">
@@ -40,6 +37,7 @@
 <script>
 // COMPONENTS
 import AppPostScream from '@/components/AppPostScream.vue';
+import AppLogoutModal from '@/components/AppLogoutModal.vue';
 
 //VUEX
 import { mapGetters } from 'vuex';
@@ -49,7 +47,8 @@ import { mdiAccountPlusOutline, mdiHome, mdiLogin, mdiLogout, mdiExitToApp, mdiF
 
 export default {
     components: {
-        AppPostScream
+        AppPostScream,
+        AppLogoutModal
     },
     data: () => ({
         svg: {

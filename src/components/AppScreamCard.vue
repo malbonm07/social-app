@@ -1,5 +1,5 @@
 <template>
-  <div v-if="scream" max-height="800" max-width="800" class="mx-auto pa-3">
+  <div max-height="800" max-width="800" class="mx-auto pa-3">
     <v-row>
       <v-col offset="1" cols="10" offset-sm="0" sm="3">
         <v-img class="card-img" :src="scream.userImage"></v-img>
@@ -16,7 +16,7 @@
                         {{scream.body}}
                     </div>
                 </v-col>
-                <v-col cols="12">
+                <v-col cols="12" md="8">
                     <v-card-actions>
                     <v-btn text @click="likeScream" small>
                         <v-icon left v-if="isLiked">{{svg.heart}}</v-icon>
@@ -25,8 +25,13 @@
                     </v-btn>
                     <v-btn text small>
                         <v-icon left>{{svg.comment}}</v-icon>
-                        Comments</v-btn>
+                        Comments
+                    </v-btn>
                     </v-card-actions>
+                    
+                </v-col>
+                <v-col cols="12" md="4" class="center">
+                  <AppDeleteScream v-if="isAuthenticated && userCredentials.handle === scream.userHandle" :scream="scream"></AppDeleteScream>
                 </v-col>
             </v-row>
           </div>
@@ -36,53 +41,56 @@
 </template>
 
 <script>
-import dayjs from 'dayjs';
-import relativeTime from 'dayjs/plugin/relativeTime';
-
+// VUEX
 import { mapGetters } from 'vuex';
 
-import { mdiCommentMultipleOutline } from '@mdi/js';
-import { mdiHeartOutline } from '@mdi/js';
-import { mdiHeart } from '@mdi/js';
+// COMPONENTS
+import AppDeleteScream from '@/components/AppDeleteScream'
+
+// SVG ICONS
+import { mdiCommentMultipleOutline, mdiHeartOutline, mdiHeart } from '@mdi/js';
 
 export default {
-    props: {
-        scream: {
-            type: Object,
-            required: true
-        }
-    },
-    data: () => ({
-      svg: {
-        comment: mdiCommentMultipleOutline,
-        heart: mdiHeart,
-        heartOut: mdiHeartOutline
+  components: {
+    AppDeleteScream
+  },
+  props: {
+      scream: {
+          type: Object,
+          required: true
       }
-    }),
-    methods: {
-      likeScream() {
-        if(this.isAuthenticated && this.scream) {
-          if(!this.isLiked) {
-            this.$store.dispatch('LIKE_SCREAM', this.scream.screamId)
-          }
-          else {
-            this.$store.dispatch('UNLIKE_SCREAM', this.scream.screamId)
-          }
+  },
+  data: () => ({
+    svg: {
+      comment: mdiCommentMultipleOutline,
+      heart: mdiHeart,
+      heartOut: mdiHeartOutline
+    }
+  }),
+  methods: {
+    likeScream() {
+      if(this.isAuthenticated && this.scream) {
+        if(!this.isLiked) {
+          this.$store.dispatch('LIKE_SCREAM', this.scream.screamId)
         }
         else {
-          this.$router.push({name: 'login'});
+          this.$store.dispatch('UNLIKE_SCREAM', this.scream.screamId)
         }
       }
-    },
-    computed: {
-        ...mapGetters(['isAuthenticated', 'userLikes']),
-        isLiked() {
-          if(this.isAuthenticated && this.userLikes) {
-            let findScreamLiked = this.userLikes.findIndex(scream => scream.screamId === this.scream.screamId)
-            return findScreamLiked >= 0 ? true : false;
-          }
-          return false;
-        }
+      else {
+        this.$router.push({name: 'login'});
+      }
     }
+  },
+  computed: {
+      ...mapGetters(['isAuthenticated', 'userLikes', 'userCredentials']),
+      isLiked() {
+        if(this.isAuthenticated && this.userLikes) {
+          let findScreamLiked = this.userLikes.findIndex(scream => scream.screamId === this.scream.screamId)
+          return findScreamLiked >= 0 ? true : false;
+        }
+        return false;
+      }
+  }
 }
 </script>

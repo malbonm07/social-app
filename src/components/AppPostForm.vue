@@ -12,8 +12,8 @@
         </v-card-text>
         <v-card-actions>
         <div class="flex-grow-1"></div>
-            <v-btn color="blue darken-1" text @click="$emit('click')">Close</v-btn>
-            <v-btn color="blue darken-1" text type="submit">Post</v-btn>
+            <v-btn color="blue darken-1" :disabled="loadingUser" text @click="$emit('click')">Close</v-btn>
+            <v-btn color="blue darken-1" :loading="loadingUser" text type="submit">Post</v-btn>
         </v-card-actions>
     </form>
 </template>
@@ -25,14 +25,15 @@ export default {
     }),
     methods: {
         handlePostSubmit() {
-            this.$store.dispatch('POST_SCREAM', {body: this.body})
+            this.$store.dispatch('POST_NEW_SCREAM', { body: this.body })
             .then(() => {
+                this.body = '';
                 this.$emit('click')
             })
         }
     },
     computed: {
         ...mapGetters(['loadingUser'])
-    }
+    },
 }
 </script>

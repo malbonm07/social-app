@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import Navbar from './components/AppNavbar';
+import Navbar from './components/Layout/AppNavbar';
 // import Api from './service/Api';
 
 export default {
