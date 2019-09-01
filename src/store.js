@@ -7,10 +7,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    modals: {
-      mainModal: false,
-      editProfile: false,
-      postComment: false
+    loading: {
+      user: false
     },
     error: null,
     path: '',
@@ -26,7 +24,8 @@ export default new Vuex.Store({
     userCredentials: state => state.user.credentials,
     screamList: state => state.screams.slice(0, 10),
     userLikes: state => state.user.likes,
-    modals: state => state.modals
+    modals: state => state.modals,
+    loadingUser: state => state.loading.user
   },
   mutations: {
     SET_SCREAMS: (state, data) => {
@@ -109,7 +108,7 @@ export default new Vuex.Store({
       commit('SET_USER_UNAUTHENTICATED', {})
     },
     FETCH_AUTH_USER: ({commit}) =>  {
-      commit('SET_STATUS', 'loading');
+      // commit('SET_STATUS', 'loading');
       Api().get('user')
       .then((res) => {
         commit('SET_USER', res.data)
@@ -153,6 +152,15 @@ export default new Vuex.Store({
       .then((res) => {
         commit('SET_SCREAM', res.data);
         commit('SET_UNLIKE', res.data);
+      })
+    },
+    POST_SCREAM: ({commit}, post) => {
+      Api().post('scream', newScream)
+      .then((res) => {
+        console.log(res)
+      })
+      .catch((error) => {
+
       })
     },
     TO_LAND: ({commi}, pathName) => {commit('SET_LAND', pathName)},

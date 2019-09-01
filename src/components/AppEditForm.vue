@@ -17,11 +17,10 @@
             </v-col>
             </v-row>
         </v-container>
-        <!-- <small>*indicates required field</small> -->
         </v-card-text>
         <v-card-actions>
         <div class="flex-grow-1"></div>
-            <v-btn color="blue darken-1" text @click.stop="closeModal">Close</v-btn>
+            <v-btn color="blue darken-1" text @click.stop="$emit('click')">Close</v-btn>
             <v-btn color="blue darken-1" text type="submit">Save</v-btn>
         </v-card-actions>
     </form>
@@ -46,11 +45,8 @@ export default {
         handleSubmit() {
             this.$store.dispatch('EDIT_USER_DETAILS', this.userDetails)
             .then(() => {
-                this.closeModal()
+                this.$emit('click')
             })
-        },
-        closeModal() {
-            this.$store.dispatch('TOGGLE_MODAL_STATE', {name: 'mainModal', value: false})
         }
     },
     mounted() {
@@ -60,7 +56,3 @@ export default {
     }
 }
 </script>
-
-<style>
-
-</style>

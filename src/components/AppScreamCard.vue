@@ -18,13 +18,13 @@
                 </v-col>
                 <v-col cols="12">
                     <v-card-actions>
-                    <v-btn text @click="likeScream">
+                    <v-btn text @click="likeScream" small>
                         <v-icon left v-if="isLiked">{{svg.heart}}</v-icon>
                         <v-icon left v-else>{{svg.heartOut}}</v-icon>
                         {{scream.likeCount}} Likes
                     </v-btn>
-                    <v-btn text>
-                        <v-icon left>{{svg.omment}}</v-icon>
+                    <v-btn text small>
+                        <v-icon left>{{svg.comment}}</v-icon>
                         Comments</v-btn>
                     </v-card-actions>
                 </v-col>

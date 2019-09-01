@@ -24,7 +24,7 @@
                             <div class="text-center mb-3 title">
                                 <span>@</span>{{data.handle}}
                             </div>
-                            <div v-if="data.bio" class="text-center mb-3">
+                            <div v-if="data.bio" class="text-center mb-3 pr-5 pl-5">
                                 {{data.bio}}
                             </div>
                             <div v-if="data.location" class="text-center mb-3">
@@ -47,14 +47,11 @@
                             </div>
                             <!------------------ END PROFILE DATA ------------------>
                             <div class="mt-5">
-
+                                
                                 <!------------------ EDIT PROFILE MODAL ------------------>
-                                <AppModal :buttonName="'Edit Profile'" :icon="'pencil'"
-                                :name="'User Profile'">
-                                    <template v-slot:name>User Profile</template>
-                                    <AppEditProfileForm :data="data"></AppEditProfileForm>
-                                </AppModal>
+                                <AppEditProfile :data="data"></AppEditProfile>
                                 <!--------------- END EDIT PROFILE MODAL -------------->
+
                             </div>
                         </v-col>
                     </v-row>
@@ -66,16 +63,14 @@
 
 <script>
 // COMPONENTS
-import AppEditProfileForm from '@/components/AppEditProfileForm.vue';
-import AppModal from '@/components/modal/AppModal.vue';
+import AppEditProfile from '@/components/AppEditProfile.vue';
 
 // SVG ICONS
 import { mdiMapMarker, mdiWeb, mdiCalendar, mdiPencil, mdiPencilOutline, mdiCameraRetakeOutline } from '@mdi/js';
 
 export default {
     components: {
-        AppEditProfileForm,
-        AppModal,
+        AppEditProfile,
     },
     props: {
         data: {

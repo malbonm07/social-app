@@ -23,7 +23,6 @@
 import AppPerfilContentLoader from '@/components/contentLoaders/AppPerfilLoader.vue';
 import AppScreamContentLoader from '@/components/contentLoaders/AppScreamLoader.vue';
 import AppProfile from '@/components/AppProfile.vue';
-import AppPanel from '@/components/AppPanel.vue';
 import AppDisabledProfile from '@/components/AppDisabledProfile.vue';
 import Scream from '@/components/AppScreamCard.vue';
 
@@ -33,11 +32,10 @@ import { mapState, mapGetters } from 'vuex';
 export default {
   components: {
     Scream,
-    AppPanel,
     AppProfile,
     AppDisabledProfile,
     AppPerfilContentLoader,
-    AppScreamContentLoader
+    AppScreamContentLoader,
   },
   computed: {
     ...mapState(["screams", "status"]),
