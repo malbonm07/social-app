@@ -18,11 +18,13 @@
                 </v-col>
                 <v-col cols="12">
                     <v-card-actions>
+                    <v-btn text @click="likeScream">
+                        <v-icon left v-if="isLiked">{{svg.heart}}</v-icon>
+                        <v-icon left v-else>{{svg.heartOut}}</v-icon>
+                        {{scream.likeCount}} Likes
+                    </v-btn>
                     <v-btn text>
-                        <v-icon left>{{svgHeartOut}}</v-icon>
-                        Like</v-btn>
-                    <v-btn text>
-                        <v-icon left>{{svgComment}}</v-icon>
+                        <v-icon left>{{svg.omment}}</v-icon>
                         Comments</v-btn>
                     </v-card-actions>
                 </v-col>
@@ -37,8 +39,11 @@
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 
+import { mapGetters } from 'vuex';
+
 import { mdiCommentMultipleOutline } from '@mdi/js';
 import { mdiHeartOutline } from '@mdi/js';
+import { mdiHeart } from '@mdi/js';
 
 export default {
     props: {
@@ -48,8 +53,36 @@ export default {
         }
     },
     data: () => ({
-      svgComment: mdiCommentMultipleOutline,
-      svgHeartOut: mdiHeartOutline
+      svg: {
+        comment: mdiCommentMultipleOutline,
+        heart: mdiHeart,
+        heartOut: mdiHeartOutline
+      }
     }),
+    methods: {
+      likeScream() {
+        if(this.isAuthenticated && this.scream) {
+          if(!this.isLiked) {
+            this.$store.dispatch('LIKE_SCREAM', this.scream.screamId)
+          }
+          else {
+            this.$store.dispatch('UNLIKE_SCREAM', this.scream.screamId)
+          }
+        }
+        else {
+          this.$router.push({name: 'login'});
+        }
+      }
+    },
+    computed: {
+        ...mapGetters(['isAuthenticated', 'userLikes']),
+        isLiked() {
+          if(this.isAuthenticated && this.userLikes) {
+            let findScreamLiked = this.userLikes.findIndex(scream => scream.screamId === this.scream.screamId)
+            return findScreamLiked >= 0 ? true : false;
+          }
+          return false;
+        }
+    }
 }
 </script>

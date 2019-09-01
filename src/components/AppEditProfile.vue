@@ -34,7 +34,7 @@
                 </v-col>
                 </v-row>
             </v-container>
-            <!-- <small>*indicates required field</small> -->
+
             </v-card-text>
             <v-card-actions>
             <div class="flex-grow-1"></div>

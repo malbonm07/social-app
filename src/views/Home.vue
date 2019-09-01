@@ -2,8 +2,8 @@
   <v-container fluid pa-3>
     <v-row>
       <v-col cols="12" sm="7">
-        <v-card class="mb-5" v-for="scream in screams" :key="scream.screamId">
-          <AppScreamContentLoader v-if="status === 'loading'"></AppScreamContentLoader>
+        <v-card class="mb-5" v-for="scream in screamList" :key="scream.screamId">
+          <AppScreamContentLoader v-if="!scream"></AppScreamContentLoader>
           <Scream v-if="status !== 'loading'" :scream="scream"></Scream>
         </v-card>
       </v-col>
@@ -19,14 +19,16 @@
 </template>
 
 <script>
+// COMPONENTS
 import AppPerfilContentLoader from '@/components/contentLoaders/AppPerfilLoader.vue';
 import AppScreamContentLoader from '@/components/contentLoaders/AppScreamLoader.vue';
 import AppProfile from '@/components/AppProfile.vue';
 import AppPanel from '@/components/AppPanel.vue';
 import AppDisabledProfile from '@/components/AppDisabledProfile.vue';
-import { mapState, mapGetters } from 'vuex';
-
 import Scream from '@/components/AppScreamCard.vue';
+
+//VUEX
+import { mapState, mapGetters } from 'vuex';
 
 export default {
   components: {
@@ -39,7 +41,7 @@ export default {
   },
   computed: {
     ...mapState(["screams", "status"]),
-    ...mapGetters(["userCredentials"])
+    ...mapGetters(["userCredentials", 'screamList'])
   }
 };
 </script>

@@ -3,6 +3,8 @@
         <v-row>
             <v-col offset="1" cols="10" class="center relative">
                 <v-img class="card-img" :src="data.imageUrl" width="200" height="200"></v-img>
+
+                <!------------------ EDIT IMAGE BUTTON ------------------>
                 <input type="file" id="imageInput" hidden @change="handleImageChange">
                 <v-tooltip bottom>
                     <template v-slot:activator="{ on }">
@@ -12,11 +14,13 @@
                     </template>
                     <span>Edit Profile Image</span>
                 </v-tooltip>
+                <!------------------ EDIT IMAGE BUTTON ------------------>
             </v-col>
             <v-col cols="12">
                 <div>
                     <v-row>
                         <v-col>
+                            <!------------------ PROFILE DATA ------------------>
                             <div class="text-center mb-3 title">
                                 <span>@</span>{{data.handle}}
                             </div>
@@ -41,8 +45,16 @@
                                     {{data.createdAt | day}}
                                 </span>
                             </div>
+                            <!------------------ END PROFILE DATA ------------------>
                             <div class="mt-5">
-                                <AppEditProfile :data="data"></AppEditProfile>
+
+                                <!------------------ EDIT PROFILE MODAL ------------------>
+                                <AppModal :buttonName="'Edit Profile'" :icon="'pencil'"
+                                :name="'User Profile'">
+                                    <template v-slot:name>User Profile</template>
+                                    <AppEditProfileForm :data="data"></AppEditProfileForm>
+                                </AppModal>
+                                <!--------------- END EDIT PROFILE MODAL -------------->
                             </div>
                         </v-col>
                     </v-row>
@@ -53,17 +65,17 @@
 </template>
 
 <script>
-import AppEditProfile from '@/components/AppEditProfile.vue';
-import { mdiMapMarker } from '@mdi/js';
-import { mdiWeb } from '@mdi/js';
-import { mdiCalendar } from '@mdi/js';
-import { mdiPencil } from '@mdi/js';
-import { mdiPencilOutline } from '@mdi/js';
-import { mdiCameraRetakeOutline } from '@mdi/js';
+// COMPONENTS
+import AppEditProfileForm from '@/components/AppEditProfileForm.vue';
+import AppModal from '@/components/modal/AppModal.vue';
+
+// SVG ICONS
+import { mdiMapMarker, mdiWeb, mdiCalendar, mdiPencil, mdiPencilOutline, mdiCameraRetakeOutline } from '@mdi/js';
 
 export default {
     components: {
-        AppEditProfile
+        AppEditProfileForm,
+        AppModal,
     },
     props: {
         data: {

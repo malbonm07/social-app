@@ -7,6 +7,11 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    modals: {
+      mainModal: false,
+      editProfile: false,
+      postComment: false
+    },
     error: null,
     path: '',
     status: 'loading',
@@ -19,7 +24,9 @@ export default new Vuex.Store({
     status: state => state.status,
     errors: state => state.error,
     userCredentials: state => state.user.credentials,
-    screamList: state => state.screams.slice(0, 10)
+    screamList: state => state.screams.slice(0, 10),
+    userLikes: state => state.user.likes,
+    modals: state => state.modals
   },
   mutations: {
     SET_SCREAMS: (state, data) => {
@@ -40,7 +47,24 @@ export default new Vuex.Store({
     SET_USER_UNAUTHENTICATED: (state, emptyData) => {
       state.user = emptyData;
       state.token = '';
-    }
+    },
+    SET_SCREAM: (state, data) => {
+      let index = state.screams.findIndex(scream => scream.screamId === data.screamId)
+      Vue.set(state.screams, index, data);
+    },
+    SET_LIKE: (state, data) => {
+      let index = state.user.likes.length
+      let likedScream = {
+        screamId: data.screamId,
+        userHandle: state.user.credentials.handle
+      }
+      Vue.set(state.user.likes, index, likedScream)
+    },
+    SET_UNLIKE: (state, data) => {
+      let index = state.user.likes.findIndex(scream => scream.screamId === data.screamId);
+      Vue.delete(state.user.likes, index)
+    },
+    SET_MODAL: (state, {name, value}) => { state.modals[name] = value }
   },
   actions: {
     GET_SCREAMS: async ({commit, dispatch}) => {
@@ -97,7 +121,6 @@ export default new Vuex.Store({
       Api().post('user/image', formData)
       .then((res) => {
         dispatch('FETCH_AUTH_USER')
-        console.log(res)
       })
       .catch((error) => console.log(error))
     },
@@ -118,6 +141,21 @@ export default new Vuex.Store({
     STATUS: ({commit}, value) => {
       commit('SET_STATUS', value)
     },
-    TO_LAND: ({commi}, pathName) => {commit('SET_LAND', pathName)}
+    LIKE_SCREAM: ({dispatch,commit}, screamId) => {
+      Api().get(`scream/${screamId}/like`)
+      .then((res) => {
+        commit('SET_SCREAM', res.data);
+        commit('SET_LIKE', res.data);
+      })
+    },
+    UNLIKE_SCREAM: ({commit}, screamId) => {
+      Api().get(`scream/${screamId}/unlike`)
+      .then((res) => {
+        commit('SET_SCREAM', res.data);
+        commit('SET_UNLIKE', res.data);
+      })
+    },
+    TO_LAND: ({commi}, pathName) => {commit('SET_LAND', pathName)},
+    TOGGLE_MODAL_STATE: ({commit}, {name, value}) => commit('SET_MODAL', {name, value})
   }
 })
