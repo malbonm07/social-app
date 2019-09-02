@@ -46,7 +46,7 @@ export default {
         AppScreamCard
     },
     data: () => ({
-        userData: null
+        userData: null,
     }),
     created() {
         window.scrollTo(0, 0);
@@ -54,6 +54,7 @@ export default {
         .then((res) => {
             console.log(res)
             this.userData = res.data
+            this.userDataHandle = res.data.user.handle
         })
         .catch((error) => {
             console.log(error)
@@ -62,9 +63,9 @@ export default {
     computed: {
         ...mapGetters(['loadingUI']),
         userScreams() {
-          return this.$store.state.screams.filter(scream => scream.userHandle === 'andres'
+          return this.$store.state.screams.filter(scream => scream.userHandle === this.$route.params.handle
           )
         }
-    }
+    },
 }
 </script>
