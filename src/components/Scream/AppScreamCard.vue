@@ -1,6 +1,6 @@
 <template>
   <div max-height="800" max-width="800" class="mx-auto pa-3">
-    <v-row>
+    <v-row  v-if="scream">
       <v-col offset="1" cols="10" offset-sm="0" sm="3">
         <v-img class="card-img" :src="scream.userImage"></v-img>
       </v-col>
@@ -8,7 +8,7 @@
           <div>
             <v-row>
                 <v-col cols="12">
-                    <h3 class="title">{{scream.userHandle}}</h3>
+                    <router-link class="title" :to="`/user/${scream.userHandle}`">{{scream.userHandle}}</router-link>
                     <p class="font-weight-light grey--text text--darken-1 body-2">{{scream.createdAt | day}}</p>
                 </v-col>
                 <v-col class="text-left" cols="12">
@@ -23,11 +23,9 @@
                         <v-icon left v-else>{{svg.heartOut}}</v-icon>
                         {{scream.likeCount}} Likes
                     </v-btn>
-                    <!-- <v-btn text small>
-                        <v-icon left>{{svg.comment}}</v-icon>
-                        {{scream.commentCount}} Comments
-                    </v-btn> -->
+                    
                     <AppCommentsModal :data="scream"></AppCommentsModal>
+                    
                     </v-card-actions>
                     
                 </v-col>
@@ -37,6 +35,9 @@
             </v-row>
           </div>
       </v-col>
+    </v-row>
+    <v-row v-else>
+      no existe todavia
     </v-row>
   </div>
 </template>

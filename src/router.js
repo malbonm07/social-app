@@ -33,6 +33,11 @@ const router = new Router({
       name: 'signup',
       beforeEnter: ifNotAuthenticated,
       component: () => import(/* webpackChunkName: "about" */ './views/Signup.vue')
+    },
+    {
+      path: '/user/:handle',
+      name: 'user',
+      component: () => import(/* webpackChunkName: "about" */ './views/UsersProfile.vue')
     }
   ]
 })

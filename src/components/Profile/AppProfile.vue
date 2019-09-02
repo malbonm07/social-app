@@ -5,15 +5,17 @@
                 <v-img class="card-img" :src="data.imageUrl" width="200" height="200"></v-img>
 
                 <!------------------ EDIT IMAGE BUTTON ------------------>
-                <input type="file" id="imageInput" hidden @change="handleImageChange">
-                <v-tooltip bottom>
-                    <template v-slot:activator="{ on }">
-                        <v-btn class="mx-2" fab dark small color="pink" absolute right bottom @click="editImage" v-on="on">
-                            <v-icon dark>{{svg.camera}}</v-icon>
-                        </v-btn>
-                    </template>
-                    <span>Edit Profile Image</span>
-                </v-tooltip>
+                <div v-if="isAuthenticated && userCredentials.handle === data.userHandle">
+                    <input type="file" id="imageInput" hidden @change="handleImageChange">
+                    <v-tooltip bottom>
+                        <template v-slot:activator="{ on }">
+                            <v-btn class="mx-2" fab dark small color="pink" absolute right bottom @click="editImage" v-on="on">
+                                <v-icon dark>{{svg.camera}}</v-icon>
+                            </v-btn>
+                        </template>
+                        <span>Edit Profile Image</span>
+                    </v-tooltip>
+                </div>
                 <!------------------ EDIT IMAGE BUTTON ------------------>
             </v-col>
             <v-col cols="12">
@@ -47,11 +49,11 @@
                             </div>
                             <!------------------ END PROFILE DATA ------------------>
                             <div class="mt-5">
-                                
-                                <!------------------ EDIT PROFILE MODAL ------------------>
-                                <AppEditProfile :data="data"></AppEditProfile>
-                                <!--------------- END EDIT PROFILE MODAL -------------->
-
+                                <div v-if="isAuthenticated && userCredentials.handle === data.handle">
+                                    <!--------------- EDIT PROFILE MODAL ----------------->
+                                    <AppEditProfile :data="data"></AppEditProfile>
+                                    <!---------------END EDIT PROFILE MODAL ------------->
+                                </div>
                             </div>
                         </v-col>
                     </v-row>
@@ -68,6 +70,8 @@ import AppEditProfile from '@/components/Profile/AppEditProfile.vue';
 // SVG ICONS
 import { mdiMapMarker, mdiWeb, mdiCalendar, mdiPencil, mdiPencilOutline, mdiCameraRetakeOutline } from '@mdi/js';
 
+// VUEX
+import { mapGetters } from 'vuex';
 export default {
     components: {
         AppEditProfile,
@@ -97,6 +101,9 @@ export default {
             const imageInput = document.getElementById('imageInput');
             imageInput.click();
         }
+    },
+    computed: {
+        ...mapGetters(['isAuthenticated', 'userCredentials'])
     }
 }
 </script>

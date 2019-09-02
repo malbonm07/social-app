@@ -10,24 +10,26 @@ export default new Vuex.Store({
   state: {
     loading: {
       user: false,
-      ui: false
+      form: false,
+      ui: false,
     },
     error: null,
     path: '',
     token: localStorage.getItem('FBidToken') || '',
     screams: [],
     selectedScream: {},
-    user: {}
+    authUser: {}
   },
   getters: {
     isAuthenticated: state => !!state.token,
     errors: state => state.error,
-    userCredentials: state => state.user.credentials,
+    userCredentials: state => state.authUser.credentials,
     screamList: state => state.screams,
-    userLikes: state => state.user.likes,
+    userLikes: state => state.authUser.likes,
     modals: state => state.modals,
     loadingUser: state => state.loading.user,
     loadingUI: state => state.loading.ui,
+    loadingForm: state => state.loading.form,
     selectedScream: state => state.selectedScream.comments
   },
   mutations: {
@@ -37,13 +39,13 @@ export default new Vuex.Store({
     SET_AUTHORIZATION: (state, token) => {
       state.token = token
     },
-    SET_USER: (state, data) => {
-      state.user = data;
+    SET_AUTH_USER: (state, data) => {
+      state.authUser = data;
     },
     SET_LAND: (state, pathName) => state.path = pathName,
     SET_ERROR: (state, error) => state.error = error,
     SET_USER_UNAUTHENTICATED: (state, emptyData) => {
-      state.user = emptyData;
+      state.authUser = emptyData;
       state.token = '';
     },
     SET_SCREAM: (state, data) => {
@@ -51,16 +53,16 @@ export default new Vuex.Store({
       Vue.set(state.screams, index, data);
     },
     SET_LIKE: (state, data) => {
-      let index = state.user.likes.length
+      let index = state.authUser.likes.length
       let likedScream = {
         screamId: data.screamId,
-        userHandle: state.user.credentials.handle
+        userHandle: state.authUser.credentials.handle
       }
-      Vue.set(state.user.likes, index, likedScream)
+      Vue.set(state.authUser.likes, index, likedScream)
     },
     SET_UNLIKE: (state, data) => {
-      let index = state.user.likes.findIndex(scream => scream.screamId === data.screamId);
-      Vue.delete(state.user.likes, index)
+      let index = state.authUser.likes.findIndex(scream => scream.screamId === data.screamId);
+      Vue.delete(state.authUser.likes, index)
     },
     SET_MODAL: (state, {name, value}) => { state.modals[name] = value },
     SET_NEW_SCREAM: (state, newScream) => {
@@ -127,7 +129,7 @@ export default new Vuex.Store({
       // commit('SET_LOADING', { name: 'user', value: true});
       Api().get('user')
       .then((res) => {
-        commit('SET_USER', res.data)
+        commit('SET_AUTH_USER', res.data)
       })
       .catch((error) => {
       })
@@ -185,7 +187,7 @@ export default new Vuex.Store({
         commit('SET_LOADING', { name: 'user', value: false});
       })
     }),
-    TO_LAND: ({commi}, pathName) => {commit('SET_LAND', pathName)},
+    TO_LAND: ({commit}, pathName) => {commit('SET_LAND', pathName)},
     TOGGLE_MODAL_STATE: ({commit}, {name, value}) => commit('SET_MODAL', {name, value}),
     DELETE_SCREAM: ({commit}, screamId) => new Promise(() => {
       commit('SET_LOADING', { name: 'user', value: true});
@@ -204,9 +206,9 @@ export default new Vuex.Store({
       commit('SET_LOADING', { name: 'user', value: true});
       Api().get(`scream/${screamId}/`)
       .then((res) => {
+        console.log(res)
         commit('SET_SELECTED_SCREAM', res.data)
         commit('SET_LOADING', { name: 'user', value: false});
-        console.log(res.data.screamId)
       })
       .catch((error) => {
         commit('SET_LOADING', { name: 'user', value: false});
@@ -215,17 +217,17 @@ export default new Vuex.Store({
     }),
     CLEAN_SELECTED_SCREAM: ({commit}) => commit('SET_CLEAN_SCREAM'),
     SUBMIT_COMMENT: ({commit}, commentData) => new Promise((response, reject) => {
-      commit('SET_LOADING', { name: 'user', value: true});
+      commit('SET_LOADING', { name: 'form', value: true});
       Api().post(`scream/${commentData.screamId}/comment`, commentData.comment)
       .then((res) => {
         commit('SET_IN_SELECTED_SCREAM_COMMENTS', res.data)
-        commit('SET_LOADING', { name: 'user', value: false});
+        commit('SET_LOADING', { name: 'form', value: false});
         response()
       })
       .catch((error) => {
         reject(error)
-        commit('SET_LOADING', { name: 'user', value: false});
+        commit('SET_LOADING', { name: 'form', value: false});
       })
-    })
+    }),
   }
 })

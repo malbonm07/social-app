@@ -1,6 +1,6 @@
 <template>
     <ContentLoader
-    :height=200
+    :height=180
     :width=500
     :speed=2
     primaryColor="#f3f3f3"
