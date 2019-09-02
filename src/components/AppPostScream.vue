@@ -1,17 +1,22 @@
 <template>
-    <v-dialog v-model="dialog" persistent max-width="600px">
-        <template v-slot:activator="{ on }">
-            <v-btn v-on="on" fab small>
+  <v-dialog v-model="dialog" persistent max-width="600px">
+    <template v-slot:activator="{ on }">
+      <v-tooltip bottom>
+          <template v-slot:activator="{ on: tooltip }">
+            <v-btn v-on="{...on, ...tooltip}" fab small>
                 <v-icon>{{svg.pencil}}</v-icon>
             </v-btn>
-        </template>
-      <v-card>
-        <v-card-title>
-          <span class="headline">User Profile</span>
-        </v-card-title>
-        <AppPostForm @click="dialog = false"></AppPostForm>
-      </v-card>
-    </v-dialog>
+          </template>
+        <span>Post a scream</span>
+      </v-tooltip>
+    </template>
+    <v-card>
+      <v-card-title>
+        <span class="headline">User Profile</span>
+      </v-card-title>
+      <AppPostForm @click="dialog = false"></AppPostForm>
+    </v-card>
+  </v-dialog>
 </template>
 
 <script>

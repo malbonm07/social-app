@@ -11,15 +11,20 @@
         <v-card-title>{{data.userHandle}}</v-card-title>
         <v-divider></v-divider>
         <v-card-text style="min-height: 300px; max-height: 500px;">
-          <AppCommentsProfile :data="data"></AppCommentsProfile>
+          <AppCommentProfile :data="data"></AppCommentProfile>
+          <v-divider></v-divider>
+            <div class="mt-5">
+              <AppNewCommentForm :screamId="data.screamId"></AppNewCommentForm>
+            </div>
           <v-divider></v-divider>
             <div class="text-center mt-5" v-show="loadingUser">
               <v-progress-circular indeterminate color="primary"
               ></v-progress-circular>
             </div>
-            <div v-if="selectedScream">
-              <AppCommentProfile v-for="(scream, i) in selectedScream" :key="i"
-              :data="scream"></AppCommentProfile>
+            <div v-if="selectedScream" class="mt-5">
+              <AppCommentProfile v-for="(commentProfile, i) in selectedScream" :key="i"
+              :data="commentProfile">
+              </AppCommentProfile>
             </div>
         </v-card-text>
         <v-divider></v-divider>
@@ -43,8 +48,8 @@
 
 <script>
 // COMPONENTS
-import AppCommentsProfile from '@/components/Scream/AppCommentsProfile.vue';
-import AppCommentProfile from '@/components/Scream/AppCommentsProfile.vue';
+import AppCommentProfile from '@/components/Scream/AppCommentProfile.vue';
+import AppNewCommentForm from '@/components/Scream/AppNewCommentForm.vue';
 
 // SVG ICONS
 import { mdiCommentMultipleOutline, mdiHeartOutline, mdiHeart } from '@mdi/js';
@@ -58,8 +63,9 @@ import { setTimeout } from 'timers';
 
 export default {
   components: {
-    AppCommentsProfile,
-    AppCommentProfile
+    AppCommentProfile,
+    AppCommentProfile,
+    AppNewCommentForm
   },
   props: {
       data: {

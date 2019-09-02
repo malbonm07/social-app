@@ -74,7 +74,12 @@ export default new Vuex.Store({
     },
     SET_CLEAR_ERROR: (state) => state.error = '',
     SET_SELECTED_SCREAM: (state, scream) => state.selectedScream = scream,
-    SET_CLEAN_SCREAM: (state) => state.selectedScream = {}
+    SET_CLEAN_SCREAM: (state) => state.selectedScream = {},
+    SET_IN_SELECTED_SCREAM_COMMENTS: (state, commentData) => {
+      let index = state.screams.findIndex(scream => scream.screamId === commentData.screamId);
+      state.screams[index].commentCount += 1
+      state.selectedScream.comments.unshift(commentData)
+    }
   },
   actions: {
     GET_SCREAMS: async ({commit, dispatch}) => {
@@ -176,7 +181,7 @@ export default new Vuex.Store({
         response()
       })
       .catch((error) => {
-        console.log(error)
+        console.log(error.response)
         commit('SET_LOADING', { name: 'user', value: false});
       })
     }),
@@ -201,13 +206,26 @@ export default new Vuex.Store({
       .then((res) => {
         commit('SET_SELECTED_SCREAM', res.data)
         commit('SET_LOADING', { name: 'user', value: false});
-        console.log(res)
+        console.log(res.data.screamId)
       })
       .catch((error) => {
         commit('SET_LOADING', { name: 'user', value: false});
         console.log(error)
       })
     }),
-    CLEAN_SELECTED_SCREAM: ({commit}) => commit('SET_CLEAN_SCREAM')
+    CLEAN_SELECTED_SCREAM: ({commit}) => commit('SET_CLEAN_SCREAM'),
+    SUBMIT_COMMENT: ({commit}, commentData) => new Promise((response, reject) => {
+      commit('SET_LOADING', { name: 'user', value: true});
+      Api().post(`scream/${commentData.screamId}/comment`, commentData.comment)
+      .then((res) => {
+        commit('SET_IN_SELECTED_SCREAM_COMMENTS', res.data)
+        commit('SET_LOADING', { name: 'user', value: false});
+        response()
+      })
+      .catch((error) => {
+        reject(error)
+        commit('SET_LOADING', { name: 'user', value: false});
+      })
+    })
   }
 })
