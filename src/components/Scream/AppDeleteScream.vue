@@ -33,7 +33,7 @@
             @click="dialog = false"
             :disabled="loadingUser"
           >
-            Disagree
+            No
           </v-btn>
 
           <v-btn

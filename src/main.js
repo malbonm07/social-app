@@ -11,19 +11,20 @@ Vue.use(day);
 
 import jwtDecode from 'jwt-decode';
 
- const token = localStorage.FBidToken
+const token = localStorage.FBidToken
 
- if(token) {
-   const decodedToken = jwtDecode(token);
-   if(decodedToken.exp * 1000 > Date.now()) {
+if(token) {
+  const decodedToken = jwtDecode(token);
+  
+  if(decodedToken.exp * 1000 > Date.now()) {
     axios.defaults.headers.common['Authorization'] = token;
     store.dispatch('AUTH_USER', token);
-   }
-   if(decodedToken.exp * 1000 < Date.now()) {
-     store.dispatch('LOGOUT_USER');
-     store.state.path = '/login';
-   }
- }
+  }
+  if(decodedToken.exp * 1000 < Date.now()) {
+    store.dispatch('LOGOUT_USER');
+    store.state.path = '/login';
+  }
+}
 //  if(!token) {
 //    store.state.path = '/signup';
 //  }

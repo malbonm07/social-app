@@ -27,7 +27,7 @@
                         <v-icon left>{{svg.comment}}</v-icon>
                         {{scream.commentCount}} Comments
                     </v-btn> -->
-                    <AppComments :data="scream"></AppComments>
+                    <AppCommentsModal :data="scream"></AppCommentsModal>
                     </v-card-actions>
                     
                 </v-col>
@@ -47,7 +47,7 @@ import { mapGetters } from 'vuex';
 
 // COMPONENTS
 import AppDeleteScream from '@/components/Scream/AppDeleteScream.vue';
-import AppComments from '@/components/Scream/AppComments.vue';
+import AppCommentsModal from '@/components/Scream/AppCommentsModal.vue';
 
 // SVG ICONS
 import { mdiCommentMultipleOutline, mdiHeartOutline, mdiHeart } from '@mdi/js';
@@ -57,7 +57,7 @@ import { likeMethod } from '@/mixins/mixins';
 export default {
   components: {
     AppDeleteScream,
-    AppComments
+    AppCommentsModal
   },
   props: {
       scream: {

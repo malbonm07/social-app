@@ -16,6 +16,7 @@ export default new Vuex.Store({
     path: '',
     token: localStorage.getItem('FBidToken') || '',
     screams: [],
+    selectedScream: {},
     user: {}
   },
   getters: {
@@ -26,7 +27,8 @@ export default new Vuex.Store({
     userLikes: state => state.user.likes,
     modals: state => state.modals,
     loadingUser: state => state.loading.user,
-    loadingUI: state => state.loading.ui
+    loadingUI: state => state.loading.ui,
+    selectedScream: state => state.selectedScream.comments
   },
   mutations: {
     SET_SCREAMS: (state, data) => {
@@ -70,7 +72,9 @@ export default new Vuex.Store({
       let index = state.screams.findIndex(scream => scream.screamId === screamId)
       Vue.delete(state.screams, index)
     },
-    SET_CLEAR_ERROR: (state) => state.error = ''
+    SET_CLEAR_ERROR: (state) => state.error = '',
+    SET_SELECTED_SCREAM: (state, scream) => state.selectedScream = scream,
+    SET_CLEAN_SCREAM: (state) => state.selectedScream = {}
   },
   actions: {
     GET_SCREAMS: async ({commit, dispatch}) => {
@@ -195,11 +199,15 @@ export default new Vuex.Store({
       commit('SET_LOADING', { name: 'user', value: true});
       Api().get(`scream/${screamId}/`)
       .then((res) => {
+        commit('SET_SELECTED_SCREAM', res.data)
+        commit('SET_LOADING', { name: 'user', value: false});
         console.log(res)
       })
       .catch((error) => {
+        commit('SET_LOADING', { name: 'user', value: false});
         console.log(error)
       })
-    })
+    }),
+    CLEAN_SELECTED_SCREAM: ({commit}) => commit('SET_CLEAN_SCREAM')
   }
 })

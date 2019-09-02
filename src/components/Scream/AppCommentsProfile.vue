@@ -35,17 +35,19 @@
 import dayjs from 'dayjs';
 
 export default {
-props: {
-    data: {
-        type: Object,
-        required: true
-    }
-},
-filters: {
-    exactDay(date) {
-        return dayjs(date).format('h:mm a, MMMM DD YYYY')
-    }
-}
+    props: {
+        data: {
+            type: Object,
+            required: true
+        }
+    },
+    filters: {
+        exactDay(date) {
+
+            return dayjs(date).format('h:mm a, MMMM DD YYYY');
+
+            }
+    },
 }
 </script>
 
