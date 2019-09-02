@@ -19,7 +19,7 @@
 
 <script>
 // COMPONENTS
-import AppEditForm from '@/components/AppEditForm.vue'
+import AppEditForm from '@/components/Profile/AppEditForm.vue'
 import AppEditFormVue from './AppEditForm.vue';
 
 

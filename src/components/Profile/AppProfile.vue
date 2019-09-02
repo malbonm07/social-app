@@ -63,7 +63,7 @@
 
 <script>
 // COMPONENTS
-import AppEditProfile from '@/components/AppEditProfile.vue';
+import AppEditProfile from '@/components/Profile/AppEditProfile.vue';
 
 // SVG ICONS
 import { mdiMapMarker, mdiWeb, mdiCalendar, mdiPencil, mdiPencilOutline, mdiCameraRetakeOutline } from '@mdi/js';

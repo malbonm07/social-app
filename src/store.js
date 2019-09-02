@@ -190,6 +190,16 @@ export default new Vuex.Store({
         commit('SET_LOADING', { name: 'user', value: false});
       })
     }),
-    CLEAR_ERROR: ({commit}) => commit('SET_CLEAR_ERROR')
+    CLEAR_ERROR: ({commit}) => commit('SET_CLEAR_ERROR'),
+    GET_SCREAM: ({commit}, screamId) => new Promise((response, reject) => {
+      commit('SET_LOADING', { name: 'user', value: true});
+      Api().get(`scream/${screamId}/`)
+      .then((res) => {
+        console.log(res)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+    })
   }
 })

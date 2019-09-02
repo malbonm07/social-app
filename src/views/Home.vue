@@ -22,9 +22,9 @@
 // COMPONENTS
 import AppPerfilContentLoader from '@/components/Loaders/AppPerfilLoader.vue';
 import AppScreamContentLoader from '@/components/Loaders/AppScreamLoader.vue';
-import AppProfile from '@/components/AppProfile.vue';
-import AppDisabledProfile from '@/components/AppDisabledProfile.vue';
-import Scream from '@/components/AppScreamCard.vue';
+import AppProfile from '@/components/Profile/AppProfile.vue';
+import AppDisabledProfile from '@/components/Profile/AppDisabledProfile.vue';
+import Scream from '@/components/Scream/AppScreamCard.vue';
 
 //VUEX
 import { mapState, mapGetters } from 'vuex';

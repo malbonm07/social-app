@@ -5,7 +5,8 @@
       dark
       @click.stop="dialog = true"
     >
-      Logout
+    <v-icon left>{{svg.logout}}</v-icon>
+       Logout
     </v-btn>
 
     <v-dialog
@@ -44,6 +45,7 @@
 </template>
 
 <script>
+import { mdiExitToApp } from '@mdi/js';
 import { mapGetters } from 'vuex';
 export default {
   props: {
@@ -54,6 +56,9 @@ export default {
   data () {
     return {
       dialog: false,
+      svg: {
+        logout: mdiExitToApp,
+      }
     }
   },
   methods: {

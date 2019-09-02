@@ -18,15 +18,16 @@
                 </v-col>
                 <v-col cols="12" md="8">
                     <v-card-actions>
-                    <v-btn text @click="likeScream" small>
+                    <v-btn text @click="likeScream(isAuthenticated, scream)" small>
                         <v-icon left v-if="isLiked">{{svg.heart}}</v-icon>
                         <v-icon left v-else>{{svg.heartOut}}</v-icon>
                         {{scream.likeCount}} Likes
                     </v-btn>
-                    <v-btn text small>
+                    <!-- <v-btn text small>
                         <v-icon left>{{svg.comment}}</v-icon>
-                        Comments
-                    </v-btn>
+                        {{scream.commentCount}} Comments
+                    </v-btn> -->
+                    <AppComments :data="scream"></AppComments>
                     </v-card-actions>
                     
                 </v-col>
@@ -45,14 +46,18 @@
 import { mapGetters } from 'vuex';
 
 // COMPONENTS
-import AppDeleteScream from '@/components/AppDeleteScream'
+import AppDeleteScream from '@/components/Scream/AppDeleteScream.vue';
+import AppComments from '@/components/Scream/AppComments.vue';
 
 // SVG ICONS
 import { mdiCommentMultipleOutline, mdiHeartOutline, mdiHeart } from '@mdi/js';
 
+// MIXINS
+import { likeMethod } from '@/mixins/mixins';
 export default {
   components: {
-    AppDeleteScream
+    AppDeleteScream,
+    AppComments
   },
   props: {
       scream: {
@@ -60,6 +65,7 @@ export default {
           required: true
       }
   },
+  mixins: [likeMethod],
   data: () => ({
     svg: {
       comment: mdiCommentMultipleOutline,
@@ -67,21 +73,6 @@ export default {
       heartOut: mdiHeartOutline
     }
   }),
-  methods: {
-    likeScream() {
-      if(this.isAuthenticated && this.scream) {
-        if(!this.isLiked) {
-          this.$store.dispatch('LIKE_SCREAM', this.scream.screamId)
-        }
-        else {
-          this.$store.dispatch('UNLIKE_SCREAM', this.scream.screamId)
-        }
-      }
-      else {
-        this.$router.push({name: 'login'});
-      }
-    }
-  },
   computed: {
       ...mapGetters(['isAuthenticated', 'userLikes', 'userCredentials']),
       isLiked() {
