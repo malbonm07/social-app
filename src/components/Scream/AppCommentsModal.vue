@@ -107,5 +107,12 @@ export default {
       return false;
     }
   },
+  mounted() {
+
+    // OPEN DIALOG WHEN NOTIFICATION IS ACTIVE
+    if(this.data.screamId === this.$route.params.screamId) {
+      this.dialog = true
+    }
+  }
 }
 </script>

@@ -8,7 +8,7 @@
           <div>
             <v-row>
                 <v-col cols="12">
-                    <router-link class="title" :to="`/user/${scream.userHandle}`">{{scream.userHandle}}</router-link>
+                    <router-link class="title" :to="`/users/${scream.userHandle}`">{{scream.userHandle}}</router-link>
                     <p class="font-weight-light grey--text text--darken-1 body-2">{{scream.createdAt | day}}</p>
                 </v-col>
                 <v-col class="text-left" cols="12">
@@ -29,8 +29,8 @@
                     </v-card-actions>
                     
                 </v-col>
-                <v-col cols="12" md="4" class="center">
-                  <AppDeleteScream v-if="isAuthenticated && userCredentials.handle === scream.userHandle" :scream="scream"></AppDeleteScream>
+                <v-col cols="12" md="4" class="center" v-if="userCredentials">
+                  <AppDeleteScream v-show="isAuthenticated && userCredentials.handle === scream.userHandle" :scream="scream"></AppDeleteScream>
                 </v-col>
             </v-row>
           </div>
@@ -78,8 +78,8 @@ export default {
       ...mapGetters(['isAuthenticated', 'userLikes', 'userCredentials']),
       isLiked() {
         if(this.isAuthenticated && this.userLikes) {
-          let findScreamLiked = this.userLikes.findIndex(scream => scream.screamId === this.scream.screamId)
-          return findScreamLiked >= 0 ? true : false;
+          let findIfScreamIsLiked = this.userLikes.findIndex(scream => scream.screamId === this.scream.screamId)
+          return findIfScreamIsLiked >= 0 ? true : false;
         }
         return false;
       }

@@ -2,7 +2,7 @@
   <v-container fluid pa-3>
     <v-row>
       <v-col cols="12" sm="7" v-if="screams">
-          <v-card class="mb-5" v-for="(scream, i) in screamList" :key="i">
+          <v-card class="mb-5" v-for="(scream, i) in screamList" :key="i" dark>
             <AppScreamCard :scream="scream" ></AppScreamCard>
           </v-card>
       </v-col>
@@ -12,8 +12,8 @@
           </v-card>
       </v-col>
       <v-col  cols="12" sm="4" class="ml-5">
-        <v-card min-height="300">
-          <AppPerfilContentLoader v-if="!userCredentials"></AppPerfilContentLoader>
+        <v-card min-height="300" dark>
+          <AppPerfilContentLoader v-if="!userCredentials && isAuthenticated"></AppPerfilContentLoader>
           <AppProfile :data="userCredentials"></AppProfile>
           <AppDisabledProfile></AppDisabledProfile>
         </v-card>
@@ -43,7 +43,7 @@ export default {
   },
   computed: {
     ...mapState(["screams", "status"]),
-    ...mapGetters(["userCredentials", 'screamList', 'loadingUI', ])
+    ...mapGetters(["userCredentials", 'screamList', 'loadingUI', 'isAuthenticated'])
   }
 };
 </script>

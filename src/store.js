@@ -26,6 +26,7 @@ export default new Vuex.Store({
     userCredentials: state => state.authUser.credentials,
     screamList: state => state.screams,
     userLikes: state => state.authUser.likes,
+    userNotifications: state => state.authUser.notifications,
     modals: state => state.modals,
     loadingUser: state => state.loading.user,
     loadingUI: state => state.loading.ui,

@@ -1,5 +1,5 @@
 <template>
-    <v-app-bar app>
+    <v-app-bar app dark>
         <v-toolbar-title class="headline text-uppercase">
             <span>SOCIAL</span>
             <span class="font-weight-light">APPLICATION</span>
@@ -9,9 +9,7 @@
         
         <AppPostScream v-if="isAuthenticated"></AppPostScream>
 
-        <v-btn v-if="isAuthenticated" text exact fab class="mr-2">
-            <v-icon>{{svg.bell}}</v-icon>
-        </v-btn>
+        <AppNotificationsMenu class="mr-2 ml-2" v-if="isAuthenticated"></AppNotificationsMenu>
 
         <v-btn text exact to="/" class="mr-2">
             <v-icon left>{{svg.home}}</v-icon>
@@ -38,6 +36,7 @@
 // COMPONENTS
 import AppPostScream from '@/components/AppPostScream.vue';
 import AppLogoutModal from '@/components/AppLogoutModal.vue';
+import AppNotificationsMenu from '@/components/AppNotificationsMenu.vue';
 
 //VUEX
 import { mapGetters } from 'vuex';
@@ -48,7 +47,8 @@ import { mdiAccountPlusOutline, mdiHome, mdiLogin, mdiLogout, mdiExitToApp, mdiF
 export default {
     components: {
         AppPostScream,
-        AppLogoutModal
+        AppLogoutModal,
+        AppNotificationsMenu
     },
     data: () => ({
         svg: {

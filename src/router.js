@@ -35,8 +35,13 @@ const router = new Router({
       component: () => import(/* webpackChunkName: "about" */ './views/Signup.vue')
     },
     {
-      path: '/user/:handle',
+      path: '/users/:handle',
       name: 'user',
+      component: () => import(/* webpackChunkName: "about" */ './views/UsersProfile.vue')
+    },
+    {
+      path: '/users/:handle/scream/:screamId',
+      name: 'notification',
       component: () => import(/* webpackChunkName: "about" */ './views/UsersProfile.vue')
     }
   ]
