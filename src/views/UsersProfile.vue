@@ -52,7 +52,6 @@ export default {
         window.scrollTo(0, 0);
         Api().get(`user/${this.$route.params.handle}`)
         .then((res) => {
-            console.log(res)
             this.userData = res.data
             this.userDataHandle = res.data.user.handle
         })

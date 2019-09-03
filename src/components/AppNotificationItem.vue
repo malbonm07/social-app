@@ -1,32 +1,46 @@
 <template>
-    <v-list-item>
-        <v-list-item-avatar>
-            <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John">
-        </v-list-item-avatar>
-
-        <v-list-item-content>
-            <v-list-item-title>John Leider</v-list-item-title>
-            <v-list-item-subtitle>Founder of Vuetify.js</v-list-item-subtitle>
-        </v-list-item-content>
+    <v-list-item @click="viewNotification">
 
         <v-list-item-action>
-            <v-btn
-            :class="fav ? 'red--text' : ''"
-            icon
-            @click="fav = !fav"
-            >
-            <v-icon>mdi-heart</v-icon>
+            <v-btn :class="data.read ? 'cyan--text text--accent-3' : 'red--text text--darken-3'" icon>
+            <v-icon v-show="data.type === 'like'" >mdi-heart</v-icon>
+            <v-icon v-show="data.type === 'comment'">mdi-comment-text</v-icon>
             </v-btn>
         </v-list-item-action>
+
+        <v-list-item-content>
+            <v-list-item-title>{{data.sender}}</v-list-item-title>
+            <v-list-item-subtitle>{{data.createdAt | day}}</v-list-item-subtitle>
+        </v-list-item-content>
+
     </v-list-item>
 </template>
 
 <script>
-export default {
+import { mdiBellOutline } from '@mdi/js';
+import { mdiHeart } from '@mdi/js';
+import { mdiMessageTextOutline } from '@mdi/js';
+import { mdiMessageText } from '@mdi/js';
+import { mdiCommentTextOutline } from '@mdi/js';
+import { mdiCommentText } from '@mdi/js';
 
+export default {
+    props: {
+        data: {
+            type: Object
+        }
+    },
+    methods: {
+        viewNotification() {
+            let notificationId = [this.data.notificationId]
+            if(this.data.read === false) {
+                this.$store.dispatch('MARK_NOTIFICATIONS', notificationId)
+                this.$router.push(`/users/${this.data.recipient}/scream/${this.data.screamId}`)
+            }
+            else {
+                this.$router.push(`/users/${this.data.recipient}/scream/${this.data.screamId}`)
+            }
+        }
+    }
 }
 </script>
-
-<style>
-
-</style>

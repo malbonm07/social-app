@@ -5,7 +5,7 @@
                 <v-img class="card-img" :src="data.imageUrl" width="200" height="200"></v-img>
 
                 <!------------------ EDIT IMAGE BUTTON ------------------>
-                <div v-if="isAuthenticated && userCredentials.handle === data.userHandle">
+                <div v-if="isAuthenticated && userCredentials.handle === data.handle">
                     <input type="file" id="imageInput" hidden @change="handleImageChange">
                     <v-tooltip bottom>
                         <template v-slot:activator="{ on }">

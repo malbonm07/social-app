@@ -13,9 +13,9 @@
       </v-col>
       <v-col  cols="12" sm="4" class="ml-5">
         <v-card min-height="300" dark>
-          <AppPerfilContentLoader v-if="!userCredentials && isAuthenticated"></AppPerfilContentLoader>
-          <AppProfile :data="userCredentials"></AppProfile>
-          <AppDisabledProfile></AppDisabledProfile>
+          <AppPerfilContentLoader v-if="isAuthenticated && !userCredentials"></AppPerfilContentLoader>
+          <AppProfile v-if="isAuthenticated" :data="userCredentials"></AppProfile>
+          <AppDisabledProfile v-show="!isAuthenticated"></AppDisabledProfile>
         </v-card>
       </v-col>
     </v-row>

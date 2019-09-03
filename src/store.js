@@ -31,7 +31,15 @@ export default new Vuex.Store({
     loadingUser: state => state.loading.user,
     loadingUI: state => state.loading.ui,
     loadingForm: state => state.loading.form,
-    selectedScream: state => state.selectedScream.comments
+    selectedScream: state => state.selectedScream.comments,
+    unreadNotifications: state => {
+      if(state.authUser.notifications) {
+        let unread = state.authUser.notifications.filter(function(notification) {
+          return notification.read === false
+        })
+        return !!unread.length
+      }
+    }
   },
   mutations: {
     SET_SCREAMS: (state, data) => {
@@ -82,6 +90,13 @@ export default new Vuex.Store({
       let index = state.screams.findIndex(scream => scream.screamId === commentData.screamId);
       state.screams[index].commentCount += 1
       state.selectedScream.comments.unshift(commentData)
+    },
+    SET_NOTIFICATIONS: (state, notificationId) => {
+      let index = state.authUser.notifications.findIndex(notification => notification.notificationId === notificationId[0]);
+      console.log(notificationId[0])
+      console.log(index)
+      console.log(state.authUser.notifications[index])
+      state.authUser.notifications[index].read = true
     }
   },
   actions: {
@@ -106,12 +121,13 @@ export default new Vuex.Store({
       })
     }),
     
-    SIGN_UP: ({context, commit}, formNewUser) => new Promise((resolve, reject) => {
+    SIGN_UP: ({dispatch, commit}, formNewUser) => new Promise((resolve, reject) => {
       commit('SET_LOADING', { name: 'user', value: true});
       Api().post('signup', formNewUser)
       .then((res) => {
         let FBidToken = `Bearer ${res.data.token}`
-        commit('AUTH_SUCCESS', FBidToken);
+        dispatch('AUTH_SUCCESS', FBidToken);
+        dispatch('FETCH_AUTH_USER');
         commit('SET_LOADING', { name: 'user', value: false});
         resolve(res);
       })
@@ -190,12 +206,13 @@ export default new Vuex.Store({
     }),
     TO_LAND: ({commit}, pathName) => {commit('SET_LAND', pathName)},
     TOGGLE_MODAL_STATE: ({commit}, {name, value}) => commit('SET_MODAL', {name, value}),
-    DELETE_SCREAM: ({commit}, screamId) => new Promise(() => {
+    DELETE_SCREAM: ({commit}, screamId) => new Promise((response) => {
       commit('SET_LOADING', { name: 'user', value: true});
       Api().delete(`scream/${screamId}/`)
       .then((res) => {
         commit('SET_DELETE_SCREAM', screamId);
         commit('SET_LOADING', { name: 'user', value: false});
+        response();
       })
       .catch((error) => {
         console.log(error)
@@ -207,7 +224,6 @@ export default new Vuex.Store({
       commit('SET_LOADING', { name: 'user', value: true});
       Api().get(`scream/${screamId}/`)
       .then((res) => {
-        console.log(res)
         commit('SET_SELECTED_SCREAM', res.data)
         commit('SET_LOADING', { name: 'user', value: false});
       })
@@ -230,5 +246,15 @@ export default new Vuex.Store({
         commit('SET_LOADING', { name: 'form', value: false});
       })
     }),
+    MARK_NOTIFICATIONS: ({commit}, notificationId) => {
+      Api().post('notifications', notificationId)
+      .then((res) => {
+        console.log(res)
+        commit('SET_NOTIFICATIONS', notificationId);
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+    }
   }
 })

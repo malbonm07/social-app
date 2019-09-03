@@ -4,7 +4,7 @@
         <v-container>
             <v-row>
             <v-col cols="12">
-                <v-textarea label="Write a comment" type="text" required v-model="body" counter :loading="loadingUser">
+                <v-textarea label="Write a comment" type="text" required v-model="body" counter :loading="loadingUser" no-resize>
                 </v-textarea>
             </v-col>
             </v-row>

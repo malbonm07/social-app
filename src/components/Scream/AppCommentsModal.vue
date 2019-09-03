@@ -14,7 +14,7 @@
           <AppCommentProfile :data="data"></AppCommentProfile>
           <v-divider></v-divider>
             <div class="mt-5">
-              <AppNewCommentForm :screamId="data.screamId"></AppNewCommentForm>
+              <AppNewCommentForm v-if="isAuthenticated" :screamId="data.screamId"></AppNewCommentForm>
             </div>
           <v-divider></v-divider>
             <div class="text-center mt-5" v-show="loadingUser">
@@ -91,6 +91,10 @@ export default {
       }, 300)
     },
     closeModal() {
+
+    if(this.data.screamId === this.$route.params.screamId) {
+      this.$router.push('/');
+    }
       this.dialog = false
       setTimeout(() => {
         this.$store.dispatch('CLEAN_SELECTED_SCREAM');
@@ -108,10 +112,10 @@ export default {
     }
   },
   mounted() {
-
     // OPEN DIALOG WHEN NOTIFICATION IS ACTIVE
     if(this.data.screamId === this.$route.params.screamId) {
-      this.dialog = true
+      this.dialog = true;
+      // this.$store.dispatch('GET_SCREAM', this.data.screamId);
     }
   }
 }

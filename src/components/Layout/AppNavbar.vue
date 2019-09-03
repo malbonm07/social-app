@@ -9,7 +9,7 @@
         
         <AppPostScream v-if="isAuthenticated"></AppPostScream>
 
-        <AppNotificationsMenu class="mr-2 ml-2" v-if="isAuthenticated"></AppNotificationsMenu>
+        <AppNotificationsMenu class="mr-2 ml-2"></AppNotificationsMenu>
 
         <v-btn text exact to="/" class="mr-2">
             <v-icon left>{{svg.home}}</v-icon>
@@ -59,13 +59,8 @@ export default {
             bell: mdiBellOutline
         }
     }),
-    methods: {
-        logout() {
-            this.$store.dispatch('LOGOUT_USER')
-        }
-    },
     computed: {
-        ...mapGetters(['isAuthenticated'])
+        ...mapGetters(['isAuthenticated', 'userNotifications'])
     }
 }
 </script>
