@@ -26,7 +26,9 @@
           <!--------------------- AUTH COMMENT FORM -------------------->
           <div class="mt-5 mb-5 center">
             <AppNewCommentForm v-if="isAuthenticated" :screamId="data.screamId"></AppNewCommentForm>
-            <v-btn v-else>Submit</v-btn>
+            <router-link v-else to="/login">
+              <v-btn>Submit</v-btn>
+            </router-link>
           </div>
           <!---------------------- END AUTH COMMENT FORM -------------------->
 

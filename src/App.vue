@@ -8,17 +8,14 @@
 </template>
 
 <script>
+// COMPONENTS
 import Navbar from './components/Layout/AppNavbar';
-// import Api from './service/Api';
 
 export default {
   name: 'App',
   components: {
     Navbar
   },
-  data: () => ({
-    // screams: {}
-  }),
   mounted() {
     this.$store.dispatch('GET_SCREAMS')
   }

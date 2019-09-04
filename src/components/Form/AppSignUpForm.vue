@@ -36,10 +36,14 @@
             :loading="loadingUser"
             @click:append="showPassword = !showPassword"
         ></v-text-field>
+
+        <!-------------------------  FORM ERRORS ------------------->
         <div v-if="errors" class="subtitle1 text-center text-capitalize red--text">
             <p v-for="(errorMessage, i) in errors" :key="i">{{errorMessage}}</p>
             <span>Already have an account? <router-link to="/login">Sign In Here</router-link></span>
         </div>
+        <!-------------------------  END FORM ERRORS ------------------->
+
         <div class="mt-5">
             <v-btn type="submit" :loading="loadingUser" class="mr-4">
                 Sign Up

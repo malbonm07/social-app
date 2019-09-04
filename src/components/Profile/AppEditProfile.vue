@@ -1,17 +1,24 @@
 <template>
   <v-row justify="center">
     <v-dialog v-model="dialog" persistent max-width="600px">
+      <!-------------------------  EDIT PROFILE BUTTON ------------------>
         <template v-slot:activator="{ on }">
             <v-btn color="primary" dark v-on="on">
                 <v-icon left>{{svg.pencil}}</v-icon>
                 Edit Profile
             </v-btn>
         </template>
+        <!-------------------------  END EDIT PROFILEBUTTON  ------------------>
+
       <v-card>
         <v-card-title>
           <span class="headline">User Profile</span>
         </v-card-title>
+
+            <!-------------------------  EDIT FORM COMPONENT ------------------->
             <AppEditForm :data="data" @click="dialog = false"></AppEditForm>
+            <!-------------------------  END EDIT FORM COMPONENT ----------------->
+
       </v-card>
     </v-dialog>
   </v-row>
@@ -21,7 +28,6 @@
 // COMPONENTS
 import AppEditForm from '@/components/Profile/AppEditForm.vue'
 import AppEditFormVue from './AppEditForm.vue';
-
 
 // VUEX
 import { mdiPencil } from '@mdi/js';

@@ -108,7 +108,7 @@ export default new Vuex.Store({
       const data = response.data;
       commit('SET_SCREAMS', data)
     },
-    SIGN_IN: ({context, dispatch, commit}, {email, password}) => new Promise((resolve, reject) => {
+    SIGN_IN: ({dispatch, commit}, {email, password}) => new Promise((resolve, reject) => {
       commit('SET_LOADING', { name: 'user', value: true});
       Api().post('login', { email, password })
       .then((res) => {
@@ -119,6 +119,7 @@ export default new Vuex.Store({
         resolve();
       })
       .catch((error) => {
+        console.log(error)
         commit('SET_ERROR', error.response.data);
         commit('SET_LOADING', { name: 'user', value: false});
       })
@@ -252,7 +253,6 @@ export default new Vuex.Store({
     MARK_NOTIFICATIONS: ({commit}, notificationId) => {
       Api().post('notifications', notificationId)
       .then((res) => {
-        console.log(res)
         commit('SET_NOTIFICATIONS', notificationId);
       })
       .catch((error) => {

@@ -7,7 +7,7 @@
       <template v-slot:activator="{ on }">
           <v-tooltip bottom>
           <template v-slot:activator="{ on: tooltip }">
-            <v-btn v-if="isAuthenticated" color="relative indigo" small fab @click="openNotifications">    
+            <v-btn color="relative indigo" small fab @click="openNotifications">    
                 <v-icon>{{svg.bell}}</v-icon>
                 <div v-if="unreadNotifications" class="badge-notification"></div>
             </v-btn>
