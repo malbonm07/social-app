@@ -4,7 +4,7 @@
       
       <!--------------------------- SCREAM IMAGE -------------------------->
       <v-col offset="1" cols="10" offset-sm="0" sm="3" class="center">
-        <v-avatar size="150">
+        <v-avatar :size="sizeAvatar">
           <v-img class="card-img" :src="scream.userImage"></v-img>
         </v-avatar>
       </v-col>
@@ -47,8 +47,8 @@
             </v-col>
 
             <!--------------------------- SCREAM DELETE MODAL -------------------------->
-            <v-col cols="12" md="4" class="center" v-if="userCredentials">
-              <AppDeleteScream v-show="isAuthenticated && userCredentials.handle === scream.userHandle" :scream="scream"></AppDeleteScream>
+            <v-col cols="12" md="4" class="center" v-if="isAuthenticated && userCredentials.handle === scream.userHandle">
+              <AppDeleteScream :scream="scream"></AppDeleteScream>
             </v-col>
             <!--------------------------- END SCREAM DELETE MODAL -------------------------->
         </v-row>
@@ -87,7 +87,8 @@ export default {
       comment: mdiCommentMultipleOutline,
       heart: mdiHeart,
       heartOut: mdiHeartOutline
-    }
+    },
+    sizeAvatar: 110
   }),
   methods: {
     getUser() {
@@ -104,6 +105,11 @@ export default {
         }
         return false;
       }
+  },
+  created() {
+    if(window.innerWidth < 500) {
+      this.sizeAvatar = 150
+    }
   }
 }
 </script>

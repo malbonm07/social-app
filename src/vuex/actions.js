@@ -1,3 +1,4 @@
+import axios from 'axios';
 import Api from '../service/Api';
 
 export default {

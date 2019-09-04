@@ -19,12 +19,10 @@
 
       <!--------------------- NOTIFICATION LIST ----------------------->
       <v-card>
-        <v-list v-if="!unreadNotifications">
-            <v-list-item>
-                You don't have notifications
-            </v-list-item>
-        </v-list>
         <v-list rounded>
+          <v-list-item v-if="!unreadNotifications">
+              You don't have notifications
+          </v-list-item>
           <!--------------------- NOTIFICATION ITEM ----------------------->
           <AppNotificationItem v-for="(notification, i) in userNotifications" :key="i" :data="notification"></AppNotificationItem>
           <!--------------------- END NOTIFICATION ITEM ----------------------->

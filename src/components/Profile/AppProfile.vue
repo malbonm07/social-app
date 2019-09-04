@@ -1,10 +1,10 @@
 <template>
     <div v-if="data">
-        <v-row>
+        <v-row class="pa-3">
             <v-col offset="1" cols="10" class="center relative">
-                <avatar>
-                    <v-img class="card-img" :src="data.imageUrl" width="200" height="200"></v-img>
-                </avatar>
+                <v-avatar size="200">
+                    <v-img class="card-img" :src="data.imageUrl"></v-img>
+                </v-avatar>
 
                 <!------------------ EDIT IMAGE BUTTON ------------------>
                 <div v-if="isAuthenticated && userCredentials.handle === data.handle">
@@ -20,12 +20,11 @@
                 </div>
                 <!------------------ EDIT IMAGE BUTTON ------------------>
             </v-col>
-            <v-col cols="12">
-                <div>
+            <v-col offset="1" cols="10" class="background">
                     <v-row>
                         <v-col>
                             <!------------------ PROFILE DATA ------------------>
-                            <div class="text-center mb-3 title">
+                            <div class="text-center mb-3 title text-secundario font-weight-bold">
                                 <span>@</span>{{data.handle}}
                             </div>
                             <div v-if="data.bio" class="text-center mb-3 pr-5 pl-5 font-weight-regular">
@@ -59,7 +58,6 @@
                             </div>
                         </v-col>
                     </v-row>
-                </div>
             </v-col>
         </v-row>
     </div>

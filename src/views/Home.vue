@@ -1,9 +1,9 @@
 <template>
-  <v-container fluid pa-3 class="gray">
+  <v-container fluid pa-3>
     <v-row>
 
       <!------------------------ SCREAM LIST ----------------------->
-      <v-col cols="12" sm="7" v-if="screams">
+      <v-col cols="12" sm="8" v-if="screams" order="1" order-sm="1">
 
           <!------------------------ SCREAM ITEM ----------------------->
           <v-card class="mb-5" v-for="(scream, i) in screamList" :key="i" elevation="0">
@@ -12,7 +12,7 @@
           <!------------------------ END SCREAM ITEM ----------------------->
 
       </v-col>
-      <v-col cols="12" sm="7" v-else>
+      <v-col cols="12" sm="8" v-else order="1">
           <v-card v-for="n in 5" :key="n" class="mb-5" elevation="0">
               <AppScreamContentLoader></AppScreamContentLoader>
           </v-card>
@@ -20,8 +20,8 @@
       <!------------------------ END SCREAM LIST ----------------------->
 
       <!------------------------ PROFILE----------------------->
-      <v-col  cols="12" sm="4">
-        <v-card min-height="300" elevation="0" color="">
+      <v-col  cols="12" sm="4" order="-1" order-sm="2">
+        <v-card min-height="300" elevation="0">
           <AppPerfilContentLoader v-show="isAuthenticated && !userCredentials"></AppPerfilContentLoader>
 
           <!------------------------ PROFILE CARD ----------------------->

@@ -1,7 +1,7 @@
 <template>
     <v-content class="gray" style="min-height: 100vh;">
-        <v-row>
-            <v-col offset-sm="3" sm="6" offset-md="4" md="4">
+        <v-row justify="center" justify-sm="start">
+            <v-col cols="11" offset-sm="3" sm="6" offset-md="4" md="4">
                 <AppPanel name="Login">
                     <AppLoginForm></AppLoginForm>
                 </AppPanel>

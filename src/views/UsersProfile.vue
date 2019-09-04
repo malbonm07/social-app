@@ -1,9 +1,9 @@
 <template>
-  <v-container fluid pa-3 class="gray" style="min-height: 100vh;">
+  <v-container fluid pa-3 style="min-height: 100vh;">
     <v-row>
 
       <!------------------------ SCREAM LIST ----------------------->
-      <v-col cols="12" sm="7" v-if="userScreams">
+      <v-col cols="12" sm="8" v-if="userScreams" order="1" order-sm="1">
 
           <!------------------------ SCREAM ITEM ----------------------->
           <v-card class="mb-5" v-for="(scream, i) in userScreams" :key="i" elevation="0">
@@ -12,7 +12,7 @@
           <!------------------------ END SCREAM ITEM ----------------------->
 
       </v-col>
-      <v-col cols="12" sm="7" v-else>
+      <v-col cols="12" sm="8" v-else order="1">
           <v-card v-for="n in 5" :key="n" class="mb-5" elevation="0">
               <AppScreamContentLoader></AppScreamContentLoader>
           </v-card>
@@ -21,8 +21,8 @@
 
 
       <!------------------------ PROFILE ----------------------->
-      <v-col  v-if="userSelected" cols="12" sm="4" class="">
-        <v-card min-height="300" elevation="0">
+      <v-col  v-if="userSelected" cols="12" sm="4" order="-1" order-sm="2">
+        <v-card min-height="300" elevation="0" class="mob">
 
           <!------------------------ PROFILE CARD ----------------------->
           <AppProfile :data="userSelected"></AppProfile>
@@ -30,7 +30,7 @@
 
         </v-card>
       </v-col>
-      <v-col cols="12" sm="4" class="ml-5" v-else>
+      <v-col cols="12" sm="5" class="ml-5" order="-1" order-sm="2" v-else>
           <v-card min-height="300" min-width="150" elevation="0">
             <AppPerfilContentLoader></AppPerfilContentLoader>
           </v-card>
@@ -69,15 +69,6 @@ export default {
     }),
     created() {
         window.scrollTo(0, 0);
-        // Api().get(`user/${this.$route.params.handle}`)
-        // .then((res) => {
-        //   console.log(res)
-        //     this.userData = res.data
-        //     this.userDataHandle = res.data.user.handle
-        // })
-        // .catch((error) => {
-        //     console.log(error)
-        // })
     },
     computed: {
         ...mapGetters(['loadingUI', 'userSelected']),
@@ -88,3 +79,12 @@ export default {
     },
 }
 </script>
+
+<style lang="scss">
+.mob {
+  @media screen and (max-width: 500px) {
+    background: #d2fafb !important;
+  }
+}
+</style>
+
