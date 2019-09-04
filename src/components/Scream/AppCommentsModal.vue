@@ -55,8 +55,8 @@
         <!---------------------- ACTIONS BUTTONS -------------------->
         <v-card-actions>
           <v-btn text @click="likeScream(isAuthenticated, data)" small>
-              <v-icon left v-if="isLiked">{{svg.heart}}</v-icon>
-              <v-icon left v-else>{{svg.heartOut}}</v-icon>
+              <v-icon color="red" left v-if="isLiked">{{svg.heart}}</v-icon>
+              <v-icon color="red" left v-else>{{svg.heartOut}}</v-icon>
               {{data.likeCount}} Likes
           </v-btn>
           <v-btn text small>

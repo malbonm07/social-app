@@ -181,7 +181,7 @@ export default new Vuex.Store({
       })
     }),
     AUTH_USER: ({ commit }, token) => {commit('SET_AUTHORIZATION', token)},
-    LIKE_SCREAM: ({dispatch,commit}, screamId) => {
+    LIKE_SCREAM: ({commit}, screamId) => {
       Api().get(`scream/${screamId}/like`)
       .then((res) => {
         commit('SET_SCREAM', res.data);

@@ -8,7 +8,7 @@
 
     <v-dialog v-model="dialog" max-width="290" >
       <v-card>
-        <v-card-title class="headline">Scream Action</v-card-title>
+        <v-card-title class="headline"></v-card-title>
 
         <v-card-text>
             Are you sure you want to log out?
@@ -16,11 +16,11 @@
 
         <v-card-actions>
           <div class="flex-grow-1"></div>
-          <v-btn color="green darken-1" text @click="dialog = false" >
-            Disagree
+          <v-btn color="cyan darken-1" text @click="dialog = false" >
+            No
           </v-btn>
-          <v-btn color="green darken-1" text @click="logout" >
-            Agree
+          <v-btn color="cyan darken-1" text @click="logout" >
+            Yes
           </v-btn>
         </v-card-actions>
         
