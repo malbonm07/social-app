@@ -7,7 +7,7 @@
       <v-col cols="12" sm="8">
         <v-row>
             <v-col cols="12">
-                <router-link class="title" :to="`/users/${scream.userHandle}`">{{scream.userHandle}}</router-link>
+                <h2 class="title" @click="getUser">{{scream.userHandle}}</h2>
                 <p class="font-weight-light grey--text text--darken-1 body-2">{{scream.createdAt | day}}</p>
             </v-col>
             <v-col class="text-left" cols="12">
@@ -69,6 +69,12 @@ export default {
       heartOut: mdiHeartOutline
     }
   }),
+  methods: {
+    getUser() {
+      this.$router.push(`/users/${this.scream.userHandle}`)
+      this.$store.dispatch('GET_USER', this.scream.userHandle)
+    }
+  },
   computed: {
       ...mapGetters(['isAuthenticated', 'userLikes', 'userCredentials']),
       isLiked() {

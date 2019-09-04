@@ -22,7 +22,7 @@
       <!------------------------ PROFILE----------------------->
       <v-col  cols="12" sm="4">
         <v-card min-height="300" dark>
-          <AppPerfilContentLoader v-if="isAuthenticated && !userCredentials"></AppPerfilContentLoader>
+          <AppPerfilContentLoader v-show="isAuthenticated && !userCredentials"></AppPerfilContentLoader>
 
           <!------------------------ PROFILE CARD ----------------------->
           <AppProfile v-if="isAuthenticated" :data="userCredentials"></AppProfile>

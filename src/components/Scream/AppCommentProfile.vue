@@ -11,7 +11,8 @@
             <div>
                 <v-row>
                     <v-col cols="12">
-                        <h3 class="title">{{data.userHandle}}</h3>
+                        <h2 @click="getUser">{{data.userHandle}}</h2>
+                        <!-- <h3 class="title">{{data.userHandle}}</h3> -->
                         <p class="font-weight-light grey--text text--darken-1 body-2">{{data.createdAt | exactDay}}</p>
                     </v-col>
                     <v-col class="text-left" cols="12">
@@ -41,12 +42,19 @@ export default {
             required: true
         }
     },
+    methods: {
+        getUser() {
+            this.$router.push(`/users/${this.data.userHandle}`)
+            this.$store.dispatch('GET_USER', this.data.userHandle)
+            this.$emit('click')
+        }
+    },
     filters: {
         exactDay(date) {
 
             return dayjs(date).format('h:mm a, MMMM DD YYYY');
 
         }
-    },
+    }
 }
 </script>

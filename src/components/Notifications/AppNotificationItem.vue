@@ -34,10 +34,12 @@ export default {
         viewNotification() {
             let notificationId = [this.data.notificationId]
             if(this.data.read === false) {
-                this.$store.dispatch('MARK_NOTIFICATIONS', notificationId)
+                this.$store.dispatch('MARK_NOTIFICATIONS', notificationId);
+                this.$store.dispatch('GET_USER', this.data.recipient);
                 this.$router.push(`/users/${this.data.recipient}/scream/${this.data.screamId}`)
             }
             else {
+                this.$store.dispatch('GET_USER', this.data.recipient);
                 this.$router.push(`/users/${this.data.recipient}/scream/${this.data.screamId}`)
             }
         }

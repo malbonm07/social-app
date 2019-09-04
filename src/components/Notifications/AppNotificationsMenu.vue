@@ -19,7 +19,7 @@
 
       <!--------------------- NOTIFICATION LIST ----------------------->
       <v-card>
-        <v-list v-if="!!userNotifications">
+        <v-list v-if="!unreadNotifications">
             <v-list-item>
                 You don't have notifications
             </v-list-item>

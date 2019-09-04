@@ -18,7 +18,8 @@ export default new Vuex.Store({
     token: localStorage.getItem('FBidToken') || '',
     screams: [],
     selectedScream: {},
-    authUser: {}
+    authUser: {},
+    dataUserSelected: null
   },
   getters: {
     isAuthenticated: state => !!state.token,
@@ -27,7 +28,6 @@ export default new Vuex.Store({
     screamList: state => state.screams,
     userLikes: state => state.authUser.likes,
     userNotifications: state => state.authUser.notifications,
-    modals: state => state.modals,
     loadingUser: state => state.loading.user,
     loadingUI: state => state.loading.ui,
     loadingForm: state => state.loading.form,
@@ -38,6 +38,11 @@ export default new Vuex.Store({
           return notification.read === false
         })
         return !!unread.length
+      }
+    },
+    userSelected: state => {
+      if(state.dataUserSelected) {
+        return state.dataUserSelected.user
       }
     }
   },
@@ -93,11 +98,9 @@ export default new Vuex.Store({
     },
     SET_NOTIFICATIONS: (state, notificationId) => {
       let index = state.authUser.notifications.findIndex(notification => notification.notificationId === notificationId[0]);
-      console.log(notificationId[0])
-      console.log(index)
-      console.log(state.authUser.notifications[index])
       state.authUser.notifications[index].read = true
-    }
+    },
+    SET_DATA_USER_PROFILE: (state, userData) => state.dataUserSelected = userData
   },
   actions: {
     GET_SCREAMS: async ({commit, dispatch}) => {
@@ -251,6 +254,15 @@ export default new Vuex.Store({
       .then((res) => {
         console.log(res)
         commit('SET_NOTIFICATIONS', notificationId);
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+    },
+    GET_USER: ({commit}, handle) => {
+      Api().get(`user/${handle}`)
+      .then((res) => {
+        commit('SET_DATA_USER_PROFILE', res.data)
       })
       .catch((error) => {
         console.log(error)

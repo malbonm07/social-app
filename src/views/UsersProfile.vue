@@ -3,7 +3,7 @@
     <v-row>
 
       <!------------------------ SCREAM LIST ----------------------->
-      <v-col cols="12" sm="7" v-if="userData">
+      <v-col cols="12" sm="7" v-if="userScreams">
 
           <!------------------------ SCREAM ITEM ----------------------->
           <v-card class="mb-5" v-for="(scream, i) in userScreams" :key="i">
@@ -21,11 +21,11 @@
 
 
       <!------------------------ PROFILE ----------------------->
-      <v-col  v-if="userData" cols="12" sm="4" class="">
+      <v-col  v-if="userSelected" cols="12" sm="4" class="">
         <v-card min-height="300">
 
           <!------------------------ PROFILE CARD ----------------------->
-          <AppProfile :data="userData.user"></AppProfile>
+          <AppProfile :data="userSelected"></AppProfile>
           <!------------------------ END PROFILE CARD ----------------------->
 
         </v-card>
@@ -69,17 +69,18 @@ export default {
     }),
     created() {
         window.scrollTo(0, 0);
-        Api().get(`user/${this.$route.params.handle}`)
-        .then((res) => {
-            this.userData = res.data
-            this.userDataHandle = res.data.user.handle
-        })
-        .catch((error) => {
-            console.log(error)
-        })
+        // Api().get(`user/${this.$route.params.handle}`)
+        // .then((res) => {
+        //   console.log(res)
+        //     this.userData = res.data
+        //     this.userDataHandle = res.data.user.handle
+        // })
+        // .catch((error) => {
+        //     console.log(error)
+        // })
     },
     computed: {
-        ...mapGetters(['loadingUI']),
+        ...mapGetters(['loadingUI', 'userSelected']),
         userScreams() {
           return this.$store.state.screams.filter(scream => scream.userHandle === this.$route.params.handle
           )

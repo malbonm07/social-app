@@ -12,7 +12,8 @@
         </v-card-text>
         <v-card-actions>
         <div class="flex-grow-1"></div>
-            <v-btn color="blue darken-1" :disabled="loadingUser" text @click="$emit('click')">
+            <v-btn color="blue darken-1" :disabled="loadingUser" text 
+            @click="$emit('click')">
                 Close
             </v-btn>
             <v-btn color="blue darken-1" :loading="loadingUser" text type="submit">

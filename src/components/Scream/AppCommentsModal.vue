@@ -24,8 +24,9 @@
           <v-divider></v-divider>
 
           <!--------------------- AUTH COMMENT FORM -------------------->
-          <div class="mt-5">
+          <div class="mt-5 mb-5 center">
             <AppNewCommentForm v-if="isAuthenticated" :screamId="data.screamId"></AppNewCommentForm>
+            <v-btn v-else>Submit</v-btn>
           </div>
           <!---------------------- END AUTH COMMENT FORM -------------------->
 
@@ -41,7 +42,7 @@
           <!---------------------  COMMENTS PROFILE------------------->
           <div v-if="selectedScream" class="mt-5">
             <AppCommentProfile v-for="(commentProfile, i) in selectedScream" :key="i"
-            :data="commentProfile">
+            :data="commentProfile" @click="closeModal">
             </AppCommentProfile>
           </div>
           <!-------------------- END COMMENTS PROFILE ------------------>
@@ -120,7 +121,7 @@ export default {
       this.dialog = false
       setTimeout(() => {
         this.$store.dispatch('CLEAN_SELECTED_SCREAM');
-      }, 300)
+      }, 100)
     }
   },
   computed: {
