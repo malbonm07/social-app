@@ -5,11 +5,11 @@
         </div>
         <div class="subtitle-1 text-center mb-5">
             <div>Don't have an account?</div> 
-            <router-link to="/signup">Sign Up Here</router-link>
+            <router-link to="/signup" class="cyan--text">Sign Up Here</router-link>
         </div>
         <div class="subtitle-1 text-center">
             <div>Already have an account?</div>
-            <router-link to="/login">Sign In Here</router-link>
+            <router-link to="/login" class="cyan--text">Sign In Here</router-link>
         </div>
     </div>
 </template>
@@ -23,7 +23,3 @@ export default {
     }
 }
 </script>
-
-<style>
-
-</style>

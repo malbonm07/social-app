@@ -16,14 +16,15 @@
                     <form @submit.prevent="handleCommentSubmit" ref="form">
                             <v-row>
                                 <v-col cols="12">
-                                    <v-textarea label="Write a comment" type="text" required v-model="body" counter :loading="loadingForm" no-resize>
+                                    <v-textarea label="Write a comment" type="text" required v-model="body" counter :loading="loadingForm" no-resize 
+                                    color="#51dacf">
                                     </v-textarea>
                                 </v-col>
                             </v-row>
                         <v-card-actions>
                         <div class="flex-grow-1"></div>
-                            <v-btn color="blue darken-1" :disabled="loadingForm" text @click="body = ''" small>Clear</v-btn>
-                            <v-btn color="blue darken-1" :loading="loadingForm" text type="submit"  small>Comment</v-btn>
+                            <v-btn color="cyan" :disabled="loadingForm" text @click="body = ''" small>Clear</v-btn>
+                            <v-btn color="cyan" :loading="loadingForm" text type="submit"  small>Comment</v-btn>
                         </v-card-actions>
                     </form>
                 </v-col>

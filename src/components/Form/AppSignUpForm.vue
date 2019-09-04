@@ -6,6 +6,7 @@
             label="Name"
             required
             :loading="loadingUser"
+            color="cyan"
         ></v-text-field>
         <v-text-field
             v-model="formNewUser.email"
@@ -13,6 +14,7 @@
             label="E-mail"
             required
             :loading="loadingUser"
+            color="cyan"
         ></v-text-field>
         <v-text-field
             v-model="formNewUser.password"
@@ -24,6 +26,7 @@
             counter
             :loading="loadingUser"
             @click:append="showPassword = !showPassword"
+            color="cyan"
         ></v-text-field>
         <v-text-field
             v-model="formNewUser.confirmPassword"
@@ -35,20 +38,21 @@
             counter
             :loading="loadingUser"
             @click:append="showPassword = !showPassword"
+            color="cyan"
         ></v-text-field>
 
         <!-------------------------  FORM ERRORS ------------------->
         <div v-if="errors" class="subtitle1 text-center text-capitalize red--text">
             <p v-for="(errorMessage, i) in errors" :key="i">{{errorMessage}}</p>
-            <span>Already have an account? <router-link to="/login">Sign In Here</router-link></span>
+            <span>Already have an account? <router-link class="cyan--text" to="/login">Sign In Here</router-link></span>
         </div>
         <!-------------------------  END FORM ERRORS ------------------->
 
         <div class="mt-5">
-            <v-btn type="submit" :loading="loadingUser" class="mr-4">
+            <v-btn type="submit" :loading="loadingUser" class="mr-4" color="#51dacf" elevation="0">
                 Sign Up
             </v-btn>
-            <v-btn @click="reset" :disabled="loadingUser">
+            <v-btn @click="reset" :disabled="loadingUser" color="#51dacf" elevation="0">
                 Clear
             </v-btn>
         </div>

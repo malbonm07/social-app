@@ -11,9 +11,9 @@
             <div>
                 <v-row>
                     <v-col cols="12">
-                        <h2 @click="getUser">{{data.userHandle}}</h2>
+                        <h2 @click="getUser" class="cyan--text hover">{{data.userHandle}}</h2>
                         <!-- <h3 class="title">{{data.userHandle}}</h3> -->
-                        <p class="font-weight-light grey--text text--darken-1 body-2">{{data.createdAt | exactDay}}</p>
+                        <p class="font-weight-light grey--text text--darken-1 body-2 mt-1">{{data.createdAt | exactDay}}</p>
                     </v-col>
                     <v-col class="text-left" cols="12">
                         <div class="font-weight-regular">

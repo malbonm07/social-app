@@ -241,11 +241,13 @@ export default new Vuex.Store({
       commit('SET_LOADING', { name: 'form', value: true});
       Api().post(`scream/${commentData.screamId}/comment`, commentData.comment)
       .then((res) => {
+        console.log(res)
         commit('SET_IN_SELECTED_SCREAM_COMMENTS', res.data)
         commit('SET_LOADING', { name: 'form', value: false});
         response()
       })
       .catch((error) => {
+        console.log(error)
         reject(error)
         commit('SET_LOADING', { name: 'form', value: false});
       })

@@ -4,7 +4,7 @@
 
       <!------------------------ COMMENTS BUTTON ----------------------->
       <template v-slot:activator="{ on }">
-        <v-btn color="primary" text small @click="getScream">
+        <v-btn color="#2c003e" text small @click="getScream">
             <v-icon left>{{svg.comment}}</v-icon>
             {{data.commentCount}} Comments
         </v-btn>
@@ -13,12 +13,12 @@
 
       <!------------------------ COMMENTS ----------------------->
       <v-card>
-        <v-card-title>{{data.userHandle}}</v-card-title>
+        <v-card-title class="primario">{{data.userHandle}}</v-card-title>
         <v-divider></v-divider>
         <v-card-text style="min-height: 300px; max-height: 500px;">
 
           <!---------------------- MAIN COMMENT PROFILE --------------------->
-          <AppCommentProfile :data="data"></AppCommentProfile>
+          <AppCommentProfile class="mt-5" :data="data"></AppCommentProfile>
           <!---------------------- END MAIN COMMENT PROFILE --------------------->
 
           <v-divider></v-divider>
@@ -27,7 +27,7 @@
           <div class="mt-5 mb-5 center">
             <AppNewCommentForm v-if="isAuthenticated" :screamId="data.screamId"></AppNewCommentForm>
             <router-link v-else to="/login">
-              <v-btn>Submit</v-btn>
+              <v-btn elevation="0" color="#51dacf">Submit</v-btn>
             </router-link>
           </div>
           <!---------------------- END AUTH COMMENT FORM -------------------->
@@ -64,7 +64,7 @@
             &nbsp;{{data.commentCount}}
           </v-btn>
           <div class="flex-grow-1"></div>
-            <v-btn color="blue darken-1" text @click="closeModal">Close</v-btn>
+            <v-btn color="cyan darken-1" text @click="closeModal">Close</v-btn>
         </v-card-actions>
         <!---------------------- END ACTIONS BUTTONS -------------------->
 

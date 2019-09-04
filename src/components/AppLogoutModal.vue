@@ -1,9 +1,8 @@
 <template>
   <div>
     <!--------------------- LOGOUT BUTTON ----------------------->
-    <v-btn color="primary" dark @click.stop="dialog = true" >
-      <v-icon left>{{svg.logout}}</v-icon>
-      Logout
+    <v-btn @click.stop="dialog = true" fab small elevation="0" color="#51dacf">
+      <v-icon>{{svg.logout}}</v-icon>
     </v-btn>
     <!--------------------- END LOGOUT BUTTON ----------------------->
 

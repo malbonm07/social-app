@@ -3,7 +3,7 @@
     <v-dialog v-model="dialog" persistent max-width="600px">
       <!-------------------------  EDIT PROFILE BUTTON ------------------>
         <template v-slot:activator="{ on }">
-            <v-btn color="primary" dark v-on="on">
+            <v-btn color="#51dacf" v-on="on" elevation="0">
                 <v-icon left>{{svg.pencil}}</v-icon>
                 Edit Profile
             </v-btn>

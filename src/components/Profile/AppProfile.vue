@@ -9,7 +9,7 @@
                     <input type="file" id="imageInput" hidden @change="handleImageChange">
                     <v-tooltip bottom>
                         <template v-slot:activator="{ on }">
-                            <v-btn class="mx-2" fab dark small color="pink" absolute right bottom @click="editImage" v-on="on">
+                            <v-btn class="mx-2" fab small color="#51dacf" absolute right bottom @click="editImage" v-on="on">
                                 <v-icon dark>{{svg.camera}}</v-icon>
                             </v-btn>
                         </template>
@@ -26,7 +26,7 @@
                             <div class="text-center mb-3 title">
                                 <span>@</span>{{data.handle}}
                             </div>
-                            <div v-if="data.bio" class="text-center mb-3 pr-5 pl-5">
+                            <div v-if="data.bio" class="text-center mb-3 pr-5 pl-5 font-weight-regular">
                                 {{data.bio}}
                             </div>
                             <div v-if="data.location" class="text-center mb-3">
@@ -38,7 +38,7 @@
                             <div v-if="data.website" class="text-center mb-3">
                                 <v-icon>{{svg.web}}</v-icon>
                                 <span>
-                                    <a :href="data.website" target="_blank">{{data.website}}</a>
+                                    <a :href="data.website" target="_blank">&nbsp;{{data.website}}</a>
                                 </span>
                             </div>
                             <div class="text-center">

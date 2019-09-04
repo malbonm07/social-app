@@ -7,7 +7,7 @@
       <template v-slot:activator="{ on }">
           <v-tooltip bottom>
           <template v-slot:activator="{ on: tooltip }">
-            <v-btn color="relative indigo" small fab @click="openNotifications">    
+            <v-btn small fab @click="openNotifications" elevation="0" color="#51dacf ">
                 <v-icon>{{svg.bell}}</v-icon>
                 <div v-if="unreadNotifications" class="badge-notification"></div>
             </v-btn>
@@ -24,12 +24,10 @@
                 You don't have notifications
             </v-list-item>
         </v-list>
-        <v-list v-for="(notification, i) in userNotifications" :key="i">
-
+        <v-list rounded>
           <!--------------------- NOTIFICATION ITEM ----------------------->
-          <AppNotificationItem :data="notification"></AppNotificationItem>
+          <AppNotificationItem v-for="(notification, i) in userNotifications" :key="i" :data="notification"></AppNotificationItem>
           <!--------------------- END NOTIFICATION ITEM ----------------------->
-
         </v-list>
         <v-divider></v-divider>
       </v-card>
@@ -82,7 +80,7 @@ export default {
   border-radius: 50%;
   background: red;
   position: absolute;
-  top: -3px;
-  right: 8px;
+  top: 1px;
+  right: 5px;
 }
 </style>

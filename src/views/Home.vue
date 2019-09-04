@@ -6,14 +6,15 @@
       <v-col cols="12" sm="7" v-if="screams">
 
           <!------------------------ SCREAM ITEM ----------------------->
-          <v-card class="mb-5" v-for="(scream, i) in screamList" :key="i" dark>
+          <v-card class="mb-5" v-for="(scream, i) in screamList" :key="i" elevation="2"
+          :color="scream.userHandle === userCredentials.handle ? '#d2fafb' : ''">
             <AppScreamCard :scream="scream" ></AppScreamCard>
           </v-card>
           <!------------------------ END SCREAM ITEM ----------------------->
 
       </v-col>
       <v-col cols="12" sm="7" v-else>
-          <v-card v-for="n in 5" :key="n" class="mb-5">
+          <v-card v-for="n in 5" :key="n" class="mb-5" elevation="2">
               <AppScreamContentLoader></AppScreamContentLoader>
           </v-card>
       </v-col>
@@ -21,7 +22,7 @@
 
       <!------------------------ PROFILE----------------------->
       <v-col  cols="12" sm="4">
-        <v-card min-height="300" dark>
+        <v-card min-height="300" elevation="2" color="#d2fafb">
           <AppPerfilContentLoader v-show="isAuthenticated && !userCredentials"></AppPerfilContentLoader>
 
           <!------------------------ PROFILE CARD ----------------------->

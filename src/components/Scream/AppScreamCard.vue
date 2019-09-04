@@ -11,7 +11,7 @@
         <v-row>
             <!--------------------- SCREAM USER NAME AND DATE ---------------------->
             <v-col cols="12">
-                <h2 class="title" @click="getUser">{{scream.userHandle}}</h2>
+                <h2 class="title cyan--text hover" @click="getUser">{{scream.userHandle}}</h2>
                 <p class="font-weight-light grey--text text--darken-1 body-2">{{scream.createdAt | day}}</p>
             </v-col>
             <!--------------------- END SCREAM USER NAME AND DATE ---------------------->
@@ -29,9 +29,10 @@
                 <v-card-actions>
                   
                   <!---------------------- SCREAM LIKE ACTION -------------------->
-                  <v-btn text @click="likeScream(isAuthenticated, scream)" small>
-                      <v-icon left v-if="isLiked">{{svg.heart}}</v-icon>
-                      <v-icon left v-else>{{svg.heartOut}}</v-icon>
+                  <v-btn text @click="likeScream(isAuthenticated, scream)" small 
+                  color="#2c003e">
+                      <v-icon left v-if="isLiked" color="red">{{svg.heart}}</v-icon>
+                      <v-icon left v-else color="red">{{svg.heartOut}}</v-icon>
                       {{scream.likeCount}} Likes
                   </v-btn>
                   <!---------------------- END SCREAM LIKE ACTION -------------------->

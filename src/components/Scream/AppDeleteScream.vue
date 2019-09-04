@@ -1,28 +1,27 @@
 <template>
   <div>
     <v-btn
-      color="primary" dark small absolute right bottom @click.stop="dialog = true" >
-      <v-icon left>{{svg.delete}}</v-icon>
-      Delete
+      color="#51dacf" small fab absolute right @click.stop="dialog = true" >
+      <v-icon>{{svg.delete}}</v-icon>
     </v-btn>
 
     <v-dialog v-model="dialog" max-width="290" >
       <v-card>
-        <v-card-title class="headline">Scream Action</v-card-title>
+        <v-card-title class="headline"></v-card-title>
 
         <v-card-text>
-            Are you sure you want to delete this post?
+            Are you sure you want to delete this scream?
         </v-card-text>
 
         <!---------------------- ACTIOS BUTTONS -------------------->
         <v-card-actions>
           <div class="flex-grow-1"></div>
 
-          <v-btn color="green darken-1" text @click="dialog = false" 
+          <v-btn color="cyan darken-1" text @click="dialog = false" 
           :disabled="loadingUser" >
             No
           </v-btn>
-          <v-btn color="green darken-1" text @click="handleDeleteScream" :loading="loadingUser" >
+          <v-btn color="red darken-1" text @click="handleDeleteScream" :loading="loadingUser" >
             Delete
           </v-btn>
         </v-card-actions>
