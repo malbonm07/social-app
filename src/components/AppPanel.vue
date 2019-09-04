@@ -1,6 +1,6 @@
 <template>
-    <v-card min-height="400" elevation="1">
-        <v-toolbar flat height="200" color="#51dacf">
+    <v-card min-height="400" elevation="0">
+        <v-toolbar flat height="200" color="#32BCC3">
             <v-row>
                 <v-col class="d-flex justify-center">
                     <v-icon size="100" color="white">{{avatar}}</v-icon>

@@ -49,10 +49,10 @@
         <!-------------------------  END FORM ERRORS ------------------->
 
         <div class="mt-5">
-            <v-btn type="submit" :loading="loadingUser" class="mr-4" color="#51dacf" elevation="0">
+            <v-btn type="submit" :loading="loadingUser" class="mr-4" color="#32BCC3" elevation="0" dark>
                 Sign Up
             </v-btn>
-            <v-btn @click="reset" :disabled="loadingUser" color="#51dacf" elevation="0">
+            <v-btn @click="reset" :disabled="loadingUser" color="#32BCC3" elevation="0" dark>
                 Clear
             </v-btn>
         </div>

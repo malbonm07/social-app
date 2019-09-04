@@ -1,19 +1,19 @@
 <template>
-  <v-container fluid pa-3>
+  <v-container fluid pa-3 class="gray" style="min-height: 100vh;">
     <v-row>
 
       <!------------------------ SCREAM LIST ----------------------->
       <v-col cols="12" sm="7" v-if="userScreams">
 
           <!------------------------ SCREAM ITEM ----------------------->
-          <v-card class="mb-5" v-for="(scream, i) in userScreams" :key="i">
+          <v-card class="mb-5" v-for="(scream, i) in userScreams" :key="i" elevation="0">
             <AppScreamCard :scream="scream" ></AppScreamCard>
           </v-card>
           <!------------------------ END SCREAM ITEM ----------------------->
 
       </v-col>
       <v-col cols="12" sm="7" v-else>
-          <v-card v-for="n in 5" :key="n" class="mb-5">
+          <v-card v-for="n in 5" :key="n" class="mb-5" elevation="0">
               <AppScreamContentLoader></AppScreamContentLoader>
           </v-card>
       </v-col>
@@ -22,7 +22,7 @@
 
       <!------------------------ PROFILE ----------------------->
       <v-col  v-if="userSelected" cols="12" sm="4" class="">
-        <v-card min-height="300">
+        <v-card min-height="300" elevation="0">
 
           <!------------------------ PROFILE CARD ----------------------->
           <AppProfile :data="userSelected"></AppProfile>
@@ -31,7 +31,7 @@
         </v-card>
       </v-col>
       <v-col cols="12" sm="4" class="ml-5" v-else>
-          <v-card min-height="300" min-width="150">
+          <v-card min-height="300" min-width="150" elevation="0">
             <AppPerfilContentLoader></AppPerfilContentLoader>
           </v-card>
       </v-col>

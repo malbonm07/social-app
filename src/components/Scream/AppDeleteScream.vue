@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-btn
-      color="#51dacf" small fab absolute right @click.stop="dialog = true" >
+      color="#32BCC3" small fab absolute right @click.stop="dialog = true" dark>
       <v-icon>{{svg.delete}}</v-icon>
     </v-btn>
 

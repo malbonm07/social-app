@@ -6,7 +6,7 @@
             label="E-mail"
             required
             :loading="loadingUser"
-            color="#51dacf"
+            color="#32BCC3"
         ></v-text-field>
         <v-text-field
             v-model="loginUser.password"
@@ -18,7 +18,7 @@
             counter
             :loading="loadingUser"
             @click:append="showPassword = !showPassword"
-            color="#51dacf"
+            color="#32BCC3"
         ></v-text-field>
 
         <!-------------------------  FORM ERRORS  ------------------->
@@ -29,10 +29,10 @@
         <!-------------------------  END FORM ERRORS ------------------->
 
         <div class="mt-5">
-            <v-btn type="submit" :loading="loadingUser" class="mr-4" color="#51dacf" elevation="0">
+            <v-btn type="submit" :loading="loadingUser" class="mr-4" color="#32BCC3" elevation="0" dark>
                 Submit
             </v-btn>
-            <v-btn @click="reset" :disabled="loadingUser" color="#51dacf" elevation="0">
+            <v-btn @click="reset" :disabled="loadingUser" color="#32BCC3" elevation="0" dark>
                 Clear
             </v-btn>
         </div>

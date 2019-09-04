@@ -13,7 +13,7 @@
 
       <!------------------------ COMMENTS ----------------------->
       <v-card>
-        <v-card-title class="primario">{{data.userHandle}}</v-card-title>
+        <v-card-title class="primario white--text">{{data.userHandle}}</v-card-title>
         <v-divider></v-divider>
         <v-card-text style="min-height: 300px; max-height: 500px;">
 
@@ -27,7 +27,7 @@
           <div class="mt-5 mb-5 center">
             <AppNewCommentForm v-if="isAuthenticated" :screamId="data.screamId"></AppNewCommentForm>
             <router-link v-else to="/login">
-              <v-btn elevation="0" color="#51dacf">Submit</v-btn>
+              <v-btn elevation="0" color="#32BCC3" dark>Comment</v-btn>
             </router-link>
           </div>
           <!---------------------- END AUTH COMMENT FORM -------------------->
@@ -53,13 +53,13 @@
         <v-divider></v-divider>
 
         <!---------------------- ACTIONS BUTTONS -------------------->
-        <v-card-actions>
-          <v-btn text @click="likeScream(isAuthenticated, data)" small>
+        <v-card-actions class="background-secundario">
+          <v-btn text @click="likeScream(isAuthenticated, data)" small color="grey">
               <v-icon color="red" left v-if="isLiked">{{svg.heart}}</v-icon>
               <v-icon color="red" left v-else>{{svg.heartOut}}</v-icon>
               {{data.likeCount}} Likes
           </v-btn>
-          <v-btn text small>
+          <v-btn text small color="grey">
             <v-icon>{{svg.comment}}</v-icon>
             &nbsp;{{data.commentCount}}
           </v-btn>

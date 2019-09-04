@@ -3,8 +3,10 @@
     <v-row  v-if="scream">
       
       <!--------------------------- SCREAM IMAGE -------------------------->
-      <v-col offset="1" cols="10" offset-sm="0" sm="3">
-        <v-img class="card-img" :src="scream.userImage"></v-img>
+      <v-col offset="1" cols="10" offset-sm="0" sm="3" class="center">
+        <v-avatar size="150">
+          <v-img class="card-img" :src="scream.userImage"></v-img>
+        </v-avatar>
       </v-col>
       <!--------------------------- END SCREAM IMAGE -------------------------->
       <v-col cols="12" sm="8">

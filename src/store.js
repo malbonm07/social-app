@@ -2,7 +2,6 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import Api from './service/Api';
 import axios from 'axios';
-import vuetify from './plugins/vuetify';
 
 Vue.use(Vuex)
 

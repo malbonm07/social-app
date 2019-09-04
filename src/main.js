@@ -22,12 +22,9 @@ if(token) {
   }
   if(decodedToken.exp * 1000 < Date.now()) {
     store.dispatch('LOGOUT_USER');
-    store.state.path = '/login';
+    // store.state.path = '/login';
   }
 }
-//  if(!token) {
-//    store.state.path = '/signup';
-//  }
 
 Vue.config.productionTip = false
 

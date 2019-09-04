@@ -1,5 +1,5 @@
 <template>
-    <v-content>
+    <v-content class="gray" style="min-height: 100vh;">
         <v-row>
             <v-col offset-sm="3" sm="6" offset-md="4" md="4">
                 <AppPanel name="Create an account">

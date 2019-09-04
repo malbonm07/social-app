@@ -1,7 +1,7 @@
 <template>
   <div>
     <!--------------------- LOGOUT BUTTON ----------------------->
-    <v-btn @click.stop="dialog = true" fab small elevation="0" color="#51dacf">
+    <v-btn @click.stop="dialog = true" fab small elevation="0" color="#32BCC3" dark>
       <v-icon>{{svg.logout}}</v-icon>
     </v-btn>
     <!--------------------- END LOGOUT BUTTON ----------------------->

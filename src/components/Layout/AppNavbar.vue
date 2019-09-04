@@ -1,5 +1,5 @@
 <template>
-    <v-app-bar app class="primario" elevation="2">
+    <v-app-bar app class="primario" elevation="0" dark>
 
         <!--------------------------- NAVBAR TITLE ---------------------------->
         <v-toolbar-title class="headline text-uppercase hover" @click="$router.push('/')">
@@ -21,7 +21,7 @@
 
 
         <!--------------------------- HOME BUTTON ---------------------------->
-        <v-btn exact to="/" class="mr-2" elevation="0" color="#51dacf" fab small>
+        <v-btn exact to="/" class="mr-2" elevation="0" color="#32BCC3" fab small>
             <v-icon>{{svg.home}}</v-icon>
         </v-btn>
         <!--------------------------- END HOME BUTTON ---------------------------->
@@ -33,15 +33,13 @@
 
 
         <!--------------------------- LOGIN/SIGNUP BUTTONS ---------------------------->
-        <div v-if="!isAuthenticated">
-            <v-btn exact to="/login" elevation="0" fab color="#51dacf" small>
+        <div v-if="!isAuthenticated" class="center">
+            <v-btn exact to="/login" elevation="0" fab color="#32BCC3" small class="mr-2">
                 <v-icon>{{svg.login}}</v-icon>
-                <!-- <span class="mr-2">Login</span> -->
             </v-btn>
             
-            <v-btn exact to="/signup" elevation="0" fab color="#51dacf" small>
+            <v-btn exact to="/signup" elevation="0" fab color="#32BCC3" small>
                 <v-icon>{{svg.logout}}</v-icon>
-                <!-- <span class="mr-2">SignUp</span> -->
             </v-btn>
         </div>
         <!--------------------------- END LOGIN/SIGNUP BUTTONS ---------------------------->
@@ -79,7 +77,3 @@ export default {
     }
 }
 </script>
-
-<style>
-
-</style>

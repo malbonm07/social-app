@@ -2,14 +2,16 @@
     <div v-if="data">
         <v-row>
             <v-col offset="1" cols="10" class="center relative">
-                <v-img class="card-img" :src="data.imageUrl" width="200" height="200"></v-img>
+                <avatar>
+                    <v-img class="card-img" :src="data.imageUrl" width="200" height="200"></v-img>
+                </avatar>
 
                 <!------------------ EDIT IMAGE BUTTON ------------------>
                 <div v-if="isAuthenticated && userCredentials.handle === data.handle">
                     <input type="file" id="imageInput" hidden @change="handleImageChange">
                     <v-tooltip bottom>
                         <template v-slot:activator="{ on }">
-                            <v-btn class="mx-2" fab small color="#51dacf" absolute right bottom @click="editImage" v-on="on">
+                            <v-btn class="mx-2" fab small color="#32BCC3" absolute right bottom @click="editImage" v-on="on" dark>
                                 <v-icon dark>{{svg.camera}}</v-icon>
                             </v-btn>
                         </template>

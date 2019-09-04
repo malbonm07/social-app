@@ -5,7 +5,7 @@
     <template v-slot:activator="{ on }">
       <v-tooltip bottom>
           <template v-slot:activator="{ on: tooltip }">
-            <v-btn v-on="{...on, ...tooltip}" fab small elevation="1" color="2c003e" dark>
+            <v-btn v-on="{...on, ...tooltip}" fab small elevation="0" color="2c003e" dark>
                 <v-icon>{{svg.pencil}}</v-icon>
             </v-btn>
           </template>
