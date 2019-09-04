@@ -21,3 +21,13 @@ a {
     justify-content: center;
     align-items: center;
 }
+.sticky {
+    position: -webkit-sticky !important;
+    position: sticky !important;
+    top: 0;
+}
+.fixed {
+    position: fixed;
+    top: 95px;
+    right: 50px;
+}

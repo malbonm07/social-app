@@ -5,39 +5,34 @@
         <v-img class="card-img" :src="scream.userImage"></v-img>
       </v-col>
       <v-col cols="12" sm="8">
-          <div>
-            <v-row>
-                <v-col cols="12">
-                    <router-link class="title" :to="`/users/${scream.userHandle}`">{{scream.userHandle}}</router-link>
-                    <p class="font-weight-light grey--text text--darken-1 body-2">{{scream.createdAt | day}}</p>
-                </v-col>
-                <v-col class="text-left" cols="12">
-                    <div class="font-weight-regular text-truncate">
-                        {{scream.body}}
-                    </div>
-                </v-col>
-                <v-col cols="12" md="8">
-                    <v-card-actions>
-                    <v-btn text @click="likeScream(isAuthenticated, scream)" small>
-                        <v-icon left v-if="isLiked">{{svg.heart}}</v-icon>
-                        <v-icon left v-else>{{svg.heartOut}}</v-icon>
-                        {{scream.likeCount}} Likes
-                    </v-btn>
-                    
-                    <AppCommentsModal :data="scream"></AppCommentsModal>
-                    
-                    </v-card-actions>
-                    
-                </v-col>
-                <v-col cols="12" md="4" class="center" v-if="userCredentials">
-                  <AppDeleteScream v-show="isAuthenticated && userCredentials.handle === scream.userHandle" :scream="scream"></AppDeleteScream>
-                </v-col>
-            </v-row>
-          </div>
+        <v-row>
+            <v-col cols="12">
+                <router-link class="title" :to="`/users/${scream.userHandle}`">{{scream.userHandle}}</router-link>
+                <p class="font-weight-light grey--text text--darken-1 body-2">{{scream.createdAt | day}}</p>
+            </v-col>
+            <v-col class="text-left" cols="12">
+                <div class="font-weight-regular text-truncate">
+                    {{scream.body}}
+                </div>
+            </v-col>
+            <v-col cols="12" md="8">
+                <v-card-actions>
+                <v-btn text @click="likeScream(isAuthenticated, scream)" small>
+                    <v-icon left v-if="isLiked">{{svg.heart}}</v-icon>
+                    <v-icon left v-else>{{svg.heartOut}}</v-icon>
+                    {{scream.likeCount}} Likes
+                </v-btn>
+                
+                <AppCommentsModal :data="scream"></AppCommentsModal>
+                
+                </v-card-actions>
+                
+            </v-col>
+            <v-col cols="12" md="4" class="center" v-if="userCredentials">
+              <AppDeleteScream v-show="isAuthenticated && userCredentials.handle === scream.userHandle" :scream="scream"></AppDeleteScream>
+            </v-col>
+        </v-row>
       </v-col>
-    </v-row>
-    <v-row v-else>
-      no existe todavia
     </v-row>
   </div>
 </template>

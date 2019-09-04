@@ -2,9 +2,9 @@
     <v-row>
         <v-col cols="4" offset-sm="0" sm="3">
             <div class="text-center">
-            <v-avatar size="60">
-                <img :src="data.userImage" alt="avatar">
-            </v-avatar>
+                <v-avatar size="60">
+                    <img :src="data.userImage" alt="avatar">
+                </v-avatar>
             </div>
         </v-col>
         <v-col cols="8" sm="8">
@@ -46,7 +46,7 @@ export default {
 
             return dayjs(date).format('h:mm a, MMMM DD YYYY');
 
-            }
+        }
     },
 }
 </script>

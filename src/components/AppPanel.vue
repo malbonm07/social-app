@@ -13,7 +13,9 @@
         <v-card-text>
             <v-row>
                 <v-col>
+                    <!------------------------ CONTENT OF PANEL ----------------------->
                     <slot></slot>
+                    <!------------------------ END CONTENT OF PANEL ----------------------->
                 </v-col>
             </v-row>
         </v-card-text>
@@ -30,7 +32,3 @@ export default {
     })
 }
 </script>
-
-<style>
-
-</style>

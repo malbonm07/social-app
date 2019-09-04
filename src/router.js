@@ -43,6 +43,14 @@ const router = new Router({
       path: '/users/:handle/scream/:screamId',
       name: 'notification',
       component: () => import(/* webpackChunkName: "about" */ './views/UsersProfile.vue')
+    },
+    {
+      path: '/notifications',
+      name: 'notifications',
+      meta: {
+        requiresAuth: true
+      },
+      component: () => import(/* webpackChunkName: "about" */ './views/Notifications.vue')
     }
   ]
 })

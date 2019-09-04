@@ -1,5 +1,7 @@
 <template>
   <v-dialog v-model="dialog" persistent max-width="600px">
+
+    <!------------------------ POST BUTTON ----------------------->
     <template v-slot:activator="{ on }">
       <v-tooltip bottom>
           <template v-slot:activator="{ on: tooltip }">
@@ -10,12 +12,22 @@
         <span>Post a scream</span>
       </v-tooltip>
     </template>
+    <!------------------------ END POST BUTTON ----------------------->
+
+
+    <!------------------------ POST FORM ----------------------->
     <v-card>
       <v-card-title>
         <span class="headline">User Profile</span>
       </v-card-title>
+
+      <!------------------------ FORM COMPONENT ----------------------->
       <AppPostForm @click="dialog = false"></AppPostForm>
+      <!------------------------ FORM COMPONENT ----------------------->
+
     </v-card>
+    <!------------------------ END POST FORM ----------------------->
+
   </v-dialog>
 </template>
 

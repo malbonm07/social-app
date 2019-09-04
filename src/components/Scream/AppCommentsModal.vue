@@ -1,33 +1,55 @@
 <template>
   <v-row justify="center">
     <v-dialog v-model="dialog" persistent scrollable max-width="600px">
+
+      <!------------------------ COMMENTS BUTTON ----------------------->
       <template v-slot:activator="{ on }">
         <v-btn color="primary" text small @click="getScream">
             <v-icon left>{{svg.comment}}</v-icon>
             {{data.commentCount}} Comments
         </v-btn>
       </template>
+      <!------------------------ COMMENTS BUTTON ----------------------->
+
+      <!------------------------ COMMENTS ----------------------->
       <v-card>
         <v-card-title>{{data.userHandle}}</v-card-title>
         <v-divider></v-divider>
         <v-card-text style="min-height: 300px; max-height: 500px;">
+
+          <!---------------------- MAIN COMMENT PROFILE --------------------->
           <AppCommentProfile :data="data"></AppCommentProfile>
+          <!---------------------- END MAIN COMMENT PROFILE --------------------->
+
           <v-divider></v-divider>
-            <div class="mt-5">
-              <AppNewCommentForm v-if="isAuthenticated" :screamId="data.screamId"></AppNewCommentForm>
-            </div>
+
+          <!--------------------- AUTH COMMENT FORM -------------------->
+          <div class="mt-5">
+            <AppNewCommentForm v-if="isAuthenticated" :screamId="data.screamId"></AppNewCommentForm>
+          </div>
+          <!---------------------- END AUTH COMMENT FORM -------------------->
+
           <v-divider></v-divider>
-            <div class="text-center mt-5" v-show="loadingUser">
-              <v-progress-circular indeterminate color="primary"
-              ></v-progress-circular>
-            </div>
-            <div v-if="selectedScream" class="mt-5">
-              <AppCommentProfile v-for="(commentProfile, i) in selectedScream" :key="i"
-              :data="commentProfile">
-              </AppCommentProfile>
-            </div>
+
+          <!---------------------- LOADER -------------------->
+          <div class="text-center mt-5" v-show="loadingUser">
+            <v-progress-circular indeterminate color="primary"
+            ></v-progress-circular>
+          </div>
+          <!---------------------- END LOADER -------------------->
+
+          <!---------------------  COMMENTS PROFILE------------------->
+          <div v-if="selectedScream" class="mt-5">
+            <AppCommentProfile v-for="(commentProfile, i) in selectedScream" :key="i"
+            :data="commentProfile">
+            </AppCommentProfile>
+          </div>
+          <!-------------------- END COMMENTS PROFILE ------------------>
+
         </v-card-text>
         <v-divider></v-divider>
+
+        <!---------------------- ACTIONS BUTTONS -------------------->
         <v-card-actions>
           <v-btn text @click="likeScream(isAuthenticated, data)" small>
               <v-icon left v-if="isLiked">{{svg.heart}}</v-icon>
@@ -41,7 +63,11 @@
           <div class="flex-grow-1"></div>
             <v-btn color="blue darken-1" text @click="closeModal">Close</v-btn>
         </v-card-actions>
+        <!---------------------- END ACTIONS BUTTONS -------------------->
+
       </v-card>
+      <!------------------------ END COMMENTS ----------------------->
+
     </v-dialog>
   </v-row>
 </template>
@@ -91,10 +117,6 @@ export default {
       }, 300)
     },
     closeModal() {
-
-    if(this.data.screamId === this.$route.params.screamId) {
-      this.$router.push('/');
-    }
       this.dialog = false
       setTimeout(() => {
         this.$store.dispatch('CLEAN_SELECTED_SCREAM');
@@ -115,7 +137,6 @@ export default {
     // OPEN DIALOG WHEN NOTIFICATION IS ACTIVE
     if(this.data.screamId === this.$route.params.screamId) {
       this.dialog = true;
-      // this.$store.dispatch('GET_SCREAM', this.data.screamId);
     }
   }
 }

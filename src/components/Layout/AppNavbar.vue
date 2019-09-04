@@ -36,7 +36,7 @@
 // COMPONENTS
 import AppPostScream from '@/components/AppPostScream.vue';
 import AppLogoutModal from '@/components/AppLogoutModal.vue';
-import AppNotificationsMenu from '@/components/AppNotificationsMenu.vue';
+import AppNotificationsMenu from '@/components/Notifications/AppNotificationsMenu.vue';
 
 //VUEX
 import { mapGetters } from 'vuex';
