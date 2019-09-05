@@ -18,6 +18,8 @@ A full stack, fully-featured social media application using Vue, Firebase, Vuex,
 
 This project covers things such as integration/interactive with REST API server built with Node.js and Express, user login and authentication, image uploads, notifications, cloud functions, and much more.
 
+![alt text](https://i.imgur.com/beqN3ue.png)
+
 ### Important things to highlight:
 
 - Sign up and Auth State
