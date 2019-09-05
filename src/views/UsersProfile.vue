@@ -21,18 +21,10 @@
 
 
       <!------------------------ PROFILE ----------------------->
-      <v-col  v-if="userSelected" cols="12" sm="4" order="-1" order-sm="2">
-        <v-card min-height="300" elevation="0" class="mob">
-
-          <!------------------------ PROFILE CARD ----------------------->
-          <AppProfile :data="userSelected"></AppProfile>
-          <!------------------------ END PROFILE CARD ----------------------->
-
-        </v-card>
-      </v-col>
-      <v-col cols="12" sm="5" class="ml-5" order="-1" order-sm="2" v-else>
-          <v-card min-height="300" min-width="150" elevation="0">
-            <AppPerfilContentLoader></AppPerfilContentLoader>
+      <v-col cols="12" sm="4" order="-1" order-sm="2" >
+          <v-card min-height="300" min-width="150" elevation="0" >
+            <AppPerfilContentLoader v-if="loadingUI"></AppPerfilContentLoader>
+            <AppProfile :data="userSelected" v-else></AppProfile>
           </v-card>
       </v-col>
       <!------------------------ END PROFILE ----------------------->
@@ -42,9 +34,6 @@
 </template>
 
 <script>
-// API AXIOS
-import Api from '@/service/Api';
-
 // COMPONENTS
 import AppPerfilContentLoader from '@/components/Loaders/AppPerfilLoader.vue';
 import AppScreamContentLoader from '@/components/Loaders/AppScreamLoader.vue';
@@ -64,9 +53,6 @@ export default {
         AppDisabledProfile,
         AppScreamCard
     },
-    data: () => ({
-        userData: null,
-    }),
     created() {
         window.scrollTo(0, 0);
     },
@@ -79,12 +65,4 @@ export default {
     },
 }
 </script>
-
-<style lang="scss">
-.mob {
-  @media screen and (max-width: 500px) {
-    background: #d2fafb !important;
-  }
-}
-</style>
 

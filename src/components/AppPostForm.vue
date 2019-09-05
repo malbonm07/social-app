@@ -17,7 +17,7 @@
                 Close
             </v-btn>
             <v-btn color="#32BCC3" :loading="loadingUser" text type="submit">
-                Post
+                Post your scream
             </v-btn>
         </v-card-actions>
     </form>

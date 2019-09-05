@@ -9,7 +9,10 @@
         </v-list-item-action>
 
         <v-list-item-content>
-            <v-list-item-title :class="data.read ? '' : 'text-secundario'">{{data.sender}}</v-list-item-title>
+            <v-list-item-title :class="data.read ? '' : 'text-secundario'">
+                {{data.sender}}&nbsp;&nbsp;
+                <span v-if="data.read === false" class="cyan--text text--darken-1 caption font-weight-medium">New</span>
+            </v-list-item-title>
             <v-list-item-subtitle :class="data.read ? '' : 'text-secundario'">{{data.createdAt | day}}</v-list-item-subtitle>
         </v-list-item-content>
 

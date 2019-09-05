@@ -79,16 +79,16 @@ export default {
       .catch((error) => console.log(error))
     },
     EDIT_USER_DETAILS: ({dispatch, commit}, userDetails) => new Promise((resolve, err) => {
-      commit('SET_LOADING', { name: 'user', value: true});
+      commit('SET_LOADING', { name: 'form', value: true});
       Api().post('user', userDetails)
       .then((res) => {
         dispatch('FETCH_AUTH_USER');
-        commit('SET_LOADING', { name: 'user', value: false});
+        commit('SET_LOADING', { name: 'form', value: false});
         resolve(res)
       })
       .catch((error) => {
         console.log(error)
-        commit('SET_LOADING', { name: 'user', value: false});
+        commit('SET_LOADING', { name: 'form', value: false});
       })
     }),
 
@@ -183,13 +183,15 @@ export default {
 
     // SELECT A USER NAME AND GET THE DATA TO SEE IN PROFILE USERS PAGE
     GET_USER: ({commit}, handle) => {
-
+      commit('SET_LOADING', { name: 'ui', value: true});
         Api().get(`user/${handle}`)
         .then((res) => {
           commit('SET_DATA_USER_PROFILE', res.data)
+          commit('SET_LOADING', { name: 'ui', value: false});
         })
         .catch((error) => {
           console.log(error)
+          commit('SET_LOADING', { name: 'ui', value: false});
         })
     },
 

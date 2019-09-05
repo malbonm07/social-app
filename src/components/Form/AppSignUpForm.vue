@@ -5,7 +5,7 @@
             :rules="handleRules"
             label="Name"
             required
-            :loading="loadingUser"
+            :loading="loadingForm"
             color="cyan"
         ></v-text-field>
         <v-text-field
@@ -13,7 +13,7 @@
             :rules="emailRules"
             label="E-mail"
             required
-            :loading="loadingUser"
+            :loading="loadingForm"
             color="cyan"
         ></v-text-field>
         <v-text-field
@@ -24,7 +24,7 @@
             label="Password"
             hint="At least 6 char acters"
             counter
-            :loading="loadingUser"
+            :loading="loadingForm"
             @click:append="showPassword = !showPassword"
             color="cyan"
         ></v-text-field>
@@ -36,7 +36,7 @@
             label="Confirm Password"
             hint="At least 6 char acters"
             counter
-            :loading="loadingUser"
+            :loading="loadingForm"
             @click:append="showPassword = !showPassword"
             color="cyan"
         ></v-text-field>
@@ -49,10 +49,10 @@
         <!-------------------------  END FORM ERRORS ------------------->
 
         <div class="mt-5">
-            <v-btn type="submit" :loading="loadingUser" class="mr-4" color="#32BCC3" elevation="0" dark>
+            <v-btn type="submit" :loading="loadingForm" class="mr-4" color="#32BCC3" elevation="0" dark>
                 Sign Up
             </v-btn>
-            <v-btn @click="reset" :disabled="loadingUser" color="#32BCC3" elevation="0" dark>
+            <v-btn @click="reset" :disabled="loadingForm" color="#32BCC3" elevation="0" dark>
                 Clear
             </v-btn>
         </div>
@@ -101,7 +101,7 @@ export default {
         },
     },
     computed: {
-        ...mapGetters(['errors', 'loadingUser'])
+        ...mapGetters(['errors', 'loadingForm'])
     },
     beforeDestroy() {
         this.$store.dispatch('CLEAR_ERROR')
