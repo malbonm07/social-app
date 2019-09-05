@@ -42,6 +42,7 @@ This project covers things such as integration/interactive with REST API server 
 ### Stack
 
 * Vue
+* Vuex
 * Vue Router
 * [Vuetify](https://vuetifyjs.com/en/)
 
