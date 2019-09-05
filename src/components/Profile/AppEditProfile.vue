@@ -11,13 +11,13 @@
         <!-------------------------  END EDIT PROFILEBUTTON  ------------------>
 
       <v-card>
-        <v-card-title>
-          <span class="headline">User Profile</span>
+        <v-card-title class="primario white--text">
+          Edit your profile
         </v-card-title>
 
-            <!-------------------------  EDIT FORM COMPONENT ------------------->
-            <AppEditForm :data="data" @click="dialog = false"></AppEditForm>
-            <!-------------------------  END EDIT FORM COMPONENT ----------------->
+        <!-------------------------  EDIT FORM COMPONENT ------------------->
+        <AppEditForm :data="data" @click="dialog = false"></AppEditForm>
+        <!-------------------------  END EDIT FORM COMPONENT ----------------->
 
       </v-card>
     </v-dialog>

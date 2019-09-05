@@ -44,8 +44,7 @@
 import { reset } from '@/mixins/mixins';
 
 // SVG ICONS
-import { mdiEyeOutline } from '@mdi/js';
-import { mdiEyeOffOutline } from '@mdi/js';
+import { mdiEyeOutline, mdiEyeOffOutline  } from '@mdi/js';
 
 //VUEX
 import { mapGetters } from 'vuex';

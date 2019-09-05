@@ -31,8 +31,15 @@ a {
     top: 95px;
     right: 50px;
 }
+.hover {
+    cursor: pointer;
+}
 
 
+
+//###################################################################
+//                             COLORS
+//###################################################################
 .primario {
     background:  #32BCC3 !important;
 }
@@ -53,7 +60,4 @@ a {
 }
 .background-secundario {
     background: #191C1E;
-}
-.hover {
-    cursor: pointer;
 }

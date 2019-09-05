@@ -1,10 +1,15 @@
 <template>
   <div>
-    <v-btn
-      color="#32BCC3" small fab absolute right @click.stop="dialog = true" dark>
-      <v-icon>{{svg.delete}}</v-icon>
-    </v-btn>
-
+    <v-tooltip bottom>
+        <template v-slot:activator="{ on }">
+          <v-btn
+            elevation="0" small absolute right top fab @click.stop="dialog = true" v-on="on" style="transform: translateY(35px)">
+            <v-icon color="red lighten-1">{{svg.delete}}</v-icon>
+          </v-btn>
+        </template>
+      <span>Delete scream</span>
+    </v-tooltip>
+    
     <v-dialog v-model="dialog" max-width="290" >
       <v-card>
         <v-card-title class="headline"></v-card-title>

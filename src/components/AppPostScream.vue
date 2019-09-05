@@ -17,10 +17,9 @@
 
     <!------------------------ POST FORM ----------------------->
     <v-card>
-      <v-card-title>
-        <span class="headline">User Profile</span>
+      <v-card-title class="primario white--text">
+        Post a scream
       </v-card-title>
-
       <!------------------------ FORM COMPONENT ----------------------->
       <AppPostForm @click="dialog = false"></AppPostForm>
       <!------------------------ FORM COMPONENT ----------------------->

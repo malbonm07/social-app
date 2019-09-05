@@ -4,7 +4,7 @@
         <v-container>
             <v-row>
             <v-col cols="12">
-                <v-textarea label="A short Bio about You" type="text" required v-model="userDetails.bio" :loading="loadingUser" color="cyan">
+                <v-textarea label="A short Bio about You" type="text" required v-model="userDetails.bio" :loading="loadingUser" color="cyan" no-resize>
                 </v-textarea>
             </v-col>
             <v-col cols="12">

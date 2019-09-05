@@ -1,7 +1,8 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import Home from './views/Home.vue'
-import store from './store.js'
+import Vue from 'vue';
+import Router from 'vue-router';
+import Home from './views/Home.vue';
+import store from './vuex';
+// import store from './store.js'
 
 Vue.use(Router)
 

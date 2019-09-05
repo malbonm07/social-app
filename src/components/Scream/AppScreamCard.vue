@@ -27,7 +27,7 @@
             <!--------------------------- END SCREAM BODY -------------------------->
 
 
-            <v-col cols="12" md="8">
+            <v-col cols="12" md="8" class="relative">
                 <v-card-actions>
                   
                   <!---------------------- SCREAM LIKE ACTION -------------------->
@@ -42,14 +42,13 @@
                   <!---------------------- SCREAM COMMENTS MODAL ------------------->
                   <AppCommentsModal :data="scream"></AppCommentsModal>
                   <!---------------------- END SCREAM COMMENTS MODAL ------------------>
-                
-                </v-card-actions>      
+                </v-card-actions>
             </v-col>
 
             <!--------------------------- SCREAM DELETE MODAL -------------------------->
-            <v-col cols="12" md="4" class="center" v-if="isAuthenticated && userCredentials.handle === scream.userHandle">
-              <AppDeleteScream :scream="scream"></AppDeleteScream>
-            </v-col>
+            <div class="center ml-5 pa-0" v-if="isAuthenticated && userCredentials">
+              <AppDeleteScream v-show="userCredentials.handle === scream.userHandle" :scream="scream"></AppDeleteScream>
+            </div>
             <!--------------------------- END SCREAM DELETE MODAL -------------------------->
         </v-row>
       </v-col>

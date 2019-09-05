@@ -10,36 +10,37 @@ export default {
       commit('SET_SCREAMS', data)
     },
 
+
     // LOGIN / REGISTRATION / LOGOUT / CLEAR ERRORS
     SIGN_IN: ({dispatch, commit}, {email, password}) => new Promise((resolve, reject) => {
-      commit('SET_LOADING', { name: 'user', value: true});
+      commit('SET_LOADING', { name: 'form', value: true});
       Api().post('login', { email, password })
       .then((res) => {
         let FBidToken = `Bearer ${res.data.token}`
         dispatch('AUTH_SUCCESS', FBidToken);
         dispatch('FETCH_AUTH_USER');
-        commit('SET_LOADING', { name: 'user', value: false});
+        commit('SET_LOADING', { name: 'form', value: false});
         resolve();
       })
       .catch((error) => {
         console.log(error)
         commit('SET_ERROR', error.response.data);
-        commit('SET_LOADING', { name: 'user', value: false});
+        commit('SET_LOADING', { name: 'form', value: false});
       })
     }),
     SIGN_UP: ({dispatch, commit}, formNewUser) => new Promise((resolve, reject) => {
-      commit('SET_LOADING', { name: 'user', value: true});
+      commit('SET_LOADING', { name: 'form', value: true});
       Api().post('signup', formNewUser)
       .then((res) => {
         let FBidToken = `Bearer ${res.data.token}`
         dispatch('AUTH_SUCCESS', FBidToken);
         dispatch('FETCH_AUTH_USER');
-        commit('SET_LOADING', { name: 'user', value: false});
+        commit('SET_LOADING', { name: 'form', value: false});
         resolve(res);
       })
       .catch((error) => {
         commit('SET_ERROR', error.response.data);
-        commit('SET_LOADING', { name: 'user', value: false});
+        commit('SET_LOADING', { name: 'form', value: false});
       })
     }),
     LOGOUT_USER: ({commit}) => new Promise((response) => {
@@ -56,6 +57,7 @@ export default {
     AUTH_USER: ({ commit }, token) => {commit('SET_AUTHORIZATION', token)},
     CLEAR_ERROR: ({commit}) => commit('SET_CLEAR_ERROR'),
 
+
     // FETCH/GET USER AUTHTENTICATED
     FETCH_AUTH_USER: ({commit}) =>  {
       // commit('SET_LOADING', { name: 'user', value: true});
@@ -66,6 +68,7 @@ export default {
       .catch((error) => {
       })
     },
+
 
     // EDIT AUTH USER PROFILE
     UPLOAD_IMAGE: ({commit, dispatch}, formData) => {
@@ -88,6 +91,7 @@ export default {
         commit('SET_LOADING', { name: 'user', value: false});
       })
     }),
+
 
     // USER INTERACTIONS
     LIKE_SCREAM: ({commit}, screamId) => {
@@ -131,6 +135,7 @@ export default {
         })
     }),
 
+
     // SELECT A SCREAM
     GET_SCREAM: ({commit}, screamId) => new Promise((response, reject) => {
         commit('SET_LOADING', { name: 'user', value: true});
@@ -145,12 +150,12 @@ export default {
         })
     }),
 
+
     // COMMENT IN SCREAM
     SUBMIT_COMMENT: ({commit}, commentData) => new Promise((response, reject) => {
         commit('SET_LOADING', { name: 'form', value: true});
         Api().post(`scream/${commentData.screamId}/comment`, commentData.comment)
         .then((res) => {
-          console.log(res)
           commit('SET_IN_SELECTED_SCREAM_COMMENTS', res.data)
           commit('SET_LOADING', { name: 'form', value: false});
           response()
@@ -163,6 +168,7 @@ export default {
     }),
     CLEAN_SELECTED_SCREAM: ({commit}) => commit('SET_CLEAN_SCREAM'),
 
+
     // NOTIFICATIONS
     MARK_NOTIFICATIONS: ({commit}, notificationId) => {
         Api().post('notifications', notificationId)
@@ -174,8 +180,10 @@ export default {
         })
     },
     
-    // SELECT A USER NAME AND GET THE DATA
+
+    // SELECT A USER NAME AND GET THE DATA TO SEE IN PROFILE USERS PAGE
     GET_USER: ({commit}, handle) => {
+
         Api().get(`user/${handle}`)
         .then((res) => {
           commit('SET_DATA_USER_PROFILE', res.data)
@@ -185,6 +193,7 @@ export default {
         })
     },
 
+    
     // SET A PATH TO AUTHENTICATED/UNAUTHENTICATED USER BEFORE CREATE (LOGIN OR SIGNUP)
     TO_LAND: ({commit}, pathName) => {commit('SET_LAND', pathName)},
   }
