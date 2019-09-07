@@ -57,7 +57,7 @@ import AppNotificationsMenu from '@/components/Notifications/AppNotificationsMen
 import { mapGetters } from 'vuex';
 
 //SVG ICONS
-import { mdiAccountPlusOutline, mdiHome, mdiLogin, mdiBellPlusOutline, mdiBellPlus  } from '@mdi/js';
+import { mdiAccountPlusOutline, mdiHome, mdiLogin } from '@mdi/js';
 
 export default {
     components: {
