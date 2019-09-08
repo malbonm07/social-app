@@ -45,7 +45,7 @@ This project covers things such as integration/interactive with REST API server 
 * Vue
 * Vuex
 * Vue Router
-* [Vuetify](https://vuetifyjs.com/en/)
+* [Vuetify 2.0](https://vuetifyjs.com/en/)
 
 ### Programings Languages, Tools and Technologies:
 
