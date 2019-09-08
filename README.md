@@ -60,3 +60,5 @@ This project covers things such as integration/interactive with REST API server 
 
 ---
 @malbonm07
+
+This project is inspired by [hidjou](https://github.com/hidjou/classsed-react-firebase-client)
