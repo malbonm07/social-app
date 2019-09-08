@@ -16,7 +16,8 @@ npm run serve
 
 A full stack, fully-featured social media application using Vue, Firebase, Vuex, Express, and Vuetify.
 
-This project covers things such as integration/interactive with REST API server built with Node.js and Express, user login and authentication, image uploads, notifications, cloud functions, and much more.
+This project covers things such as integration/interactive with REST API server built with Node.js and Express, user login and authentication, image uploads, notifications, cloud functions, and much more. This project is inspired by [hidjou](https://github.com/hidjou/classsed-react-firebase-client)
+
 
 ![alt text](https://i.imgur.com/beqN3ue.png)
 ![alt text](https://i.imgur.com/LlXTjl1.png)
@@ -60,5 +61,3 @@ This project covers things such as integration/interactive with REST API server 
 
 ---
 @malbonm07
-
-This project is inspired by [hidjou](https://github.com/hidjou/classsed-react-firebase-client)
