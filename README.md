@@ -24,6 +24,8 @@ This is a simple project, Open Source inspired by [hidjou](https://github.com/hi
 ![alt text](https://i.imgur.com/LlXTjl1.png)
 ![alt text](https://i.imgur.com/6Qdj14t.png)
 ![alt text](https://i.imgur.com/PBAlv0I.png)
+![alt text](https://i.imgur.com/SPY99RI.png)
+![alt text](https://i.imgur.com/4ROmUzd.png)
 
 ### Important things to highlight:
 
