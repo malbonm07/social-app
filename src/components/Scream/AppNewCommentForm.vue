@@ -2,7 +2,7 @@
     <v-row class="background">
         <v-col cols="4" offset-sm="0" sm="3">
             <div class="text-center">
-            <v-avatar size="60">
+            <v-avatar size="50">
                 <img :src="userCredentials.imageUrl" alt="avatar">
             </v-avatar>
             </div>
@@ -17,7 +17,7 @@
                             <v-row>
                                 <v-col cols="12">
                                     <v-textarea label="Write a comment" type="text" required v-model="body" counter :loading="loadingForm" no-resize 
-                                    color="#32BCC3">
+                                    color="#32BCC3" rows="3">
                                     </v-textarea>
                                 </v-col>
                             </v-row>

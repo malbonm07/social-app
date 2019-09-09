@@ -2,7 +2,7 @@
     <v-row>
         <v-col cols="4" offset-sm="0" sm="3">
             <div class="text-center">
-                <v-avatar size="60">
+                <v-avatar size="50">
                     <img :src="data.userImage" alt="avatar">
                 </v-avatar>
             </div>

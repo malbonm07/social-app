@@ -3,8 +3,7 @@
 
         <!--------------------------- NAVBAR TITLE ---------------------------->
         <v-toolbar-title class="headline text-uppercase hover" @click="$router.push('/')">
-            <span>SOCIAL</span>
-            <span class="font-weight-light" >APPLICATION</span>
+            <span>APP</span>
         </v-toolbar-title>
         <v-spacer></v-spacer>
         <!--------------------------- END NAVBAR TITLE ---------------------------->
