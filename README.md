@@ -16,8 +16,7 @@ npm run serve
 
 A full stack, fully-featured social media application using Vue, Firebase, Vuex, Express, and Vuetify.
 
-This project covers things such as integration/interactive with REST API server built with Node.js and Express, user login and authentication, image uploads, notifications, cloud functions, and much more. [Server of repository here](https://github.com/malbonm07/fb-server), 
-This is a simple project, Open Source.
+This project covers things such as integration/interactive with REST API server built with Node.js and Express, user login and authentication, image uploads, notifications, cloud functions, and much more. [Server of repository here](https://github.com/malbonm07/fb-server),
 
 
 ![alt text](https://i.imgur.com/beqN3ue.png)
@@ -63,4 +62,5 @@ This is a simple project, Open Source.
 * [Skeleton Screens](https://uxdesign.cc/what-you-should-know-about-skeleton-screens-a820c45a571a)
 
 ---
+Open Source, This is a simple project made with <3
 @malbonm07
