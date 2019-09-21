@@ -15,15 +15,15 @@ export default {
 
     // USER INTERACTIONS
     SET_LIKE: (state, data) => {
-        let index = state.authUser.likes.length
-        let likedScream = {
+        const index = state.authUser.likes.length
+        const likedScream = {
           screamId: data.screamId,
           userHandle: state.authUser.credentials.handle
         }
         Vue.set(state.authUser.likes, index, likedScream)
     },
     SET_UNLIKE: (state, data) => {
-        let index = state.authUser.likes.findIndex(scream => scream.screamId === data.screamId);
+        const index = state.authUser.likes.findIndex(scream => scream.screamId === data.screamId);
         Vue.delete(state.authUser.likes, index)
     },
     
@@ -32,7 +32,7 @@ export default {
       state.screams = data
     },
     SET_SCREAM: (state, data) => {
-        let index = state.screams.findIndex(scream => scream.screamId === data.screamId)
+        const index = state.screams.findIndex(scream => scream.screamId === data.screamId)
         Vue.set(state.screams, index, data);
     },
     SET_NEW_SCREAM: (state, newScream) => {
@@ -40,7 +40,7 @@ export default {
         state.loading.user = false;
     },
     SET_DELETE_SCREAM: (state, screamId) => {
-        let index = state.screams.findIndex(scream => scream.screamId === screamId)
+        const index = state.screams.findIndex(scream => scream.screamId === screamId)
         Vue.delete(state.screams, index)
     },
     SET_CLEAN_SCREAM: (state) => state.selectedScream = {},
@@ -48,7 +48,7 @@ export default {
 
     //NEW COMMENT IN A SCREAM
     SET_IN_SELECTED_SCREAM_COMMENTS: (state, commentData) => {
-        let index = state.screams.findIndex(scream => scream.screamId === commentData.screamId);
+        const index = state.screams.findIndex(scream => scream.screamId === commentData.screamId);
         state.screams[index].commentCount += 1
         state.selectedScream.comments.unshift(commentData)
     },
@@ -62,7 +62,7 @@ export default {
 
     //NOTIFICATIONS
     SET_NOTIFICATIONS: (state, notificationId) => {
-      let index = state.authUser.notifications.findIndex(notification => notification.notificationId === notificationId[0]);
+      const index = state.authUser.notifications.findIndex(notification => notification.notificationId === notificationId[0]);
       state.authUser.notifications[index].read = true
     },
 

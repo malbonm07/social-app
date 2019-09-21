@@ -16,14 +16,13 @@ export default {
       commit('SET_LOADING', { name: 'form', value: true});
       Api().post('login', { email, password })
       .then((res) => {
-        let FBidToken = `Bearer ${res.data.token}`
+        const FBidToken = `Bearer ${res.data.token}`
         dispatch('AUTH_SUCCESS', FBidToken);
         dispatch('FETCH_AUTH_USER');
         commit('SET_LOADING', { name: 'form', value: false});
         resolve();
       })
       .catch((error) => {
-        console.log(error)
         commit('SET_ERROR', error.response.data);
         commit('SET_LOADING', { name: 'form', value: false});
       })
@@ -32,7 +31,7 @@ export default {
       commit('SET_LOADING', { name: 'form', value: true});
       Api().post('signup', formNewUser)
       .then((res) => {
-        let FBidToken = `Bearer ${res.data.token}`
+        const FBidToken = `Bearer ${res.data.token}`
         dispatch('AUTH_SUCCESS', FBidToken);
         dispatch('FETCH_AUTH_USER');
         commit('SET_LOADING', { name: 'form', value: false});
@@ -87,7 +86,6 @@ export default {
         resolve(res)
       })
       .catch((error) => {
-        console.log(error)
         commit('SET_LOADING', { name: 'form', value: false});
       })
     }),
@@ -117,7 +115,6 @@ export default {
         response()
       })
       .catch((error) => {
-        console.log(error.response)
         commit('SET_LOADING', { name: 'user', value: false});
       })
     }),
@@ -130,7 +127,6 @@ export default {
           response();
         })
         .catch((error) => {
-          console.log(error)
           commit('SET_LOADING', { name: 'user', value: false});
         })
     }),
@@ -146,7 +142,6 @@ export default {
         })
         .catch((error) => {
           commit('SET_LOADING', { name: 'user', value: false});
-          console.log(error)
         })
     }),
 
@@ -161,7 +156,6 @@ export default {
           response()
         })
         .catch((error) => {
-          console.log(error)
           reject(error)
           commit('SET_LOADING', { name: 'form', value: false});
         })
@@ -172,11 +166,11 @@ export default {
     // NOTIFICATIONS
     MARK_NOTIFICATIONS: ({commit}, notificationId) => {
         Api().post('notifications', notificationId)
-        .then((res) => {
+        .then(() => {
           commit('SET_NOTIFICATIONS', notificationId);
         })
         .catch((error) => {
-          console.log(error)
+          reject(error)
         })
     },
     
@@ -190,7 +184,6 @@ export default {
           commit('SET_LOADING', { name: 'ui', value: false});
         })
         .catch((error) => {
-          console.log(error)
           commit('SET_LOADING', { name: 'ui', value: false});
         })
     },

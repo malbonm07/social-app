@@ -12,7 +12,7 @@ export default {
     selectedScream: state => state.selectedScream.comments,
     unreadNotifications: state => {
         if(state.authUser.notifications) {
-            let unread = state.authUser.notifications.filter(function(notification) {
+            const unread = state.authUser.notifications.filter(function(notification) {
                 return notification.read === false
             })
         return !!unread.length
