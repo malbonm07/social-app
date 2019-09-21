@@ -63,5 +63,4 @@ Inspired by [hidjou](https://github.com/hidjou/classsed-react-firebase-client)
 * [Skeleton Screens](https://uxdesign.cc/what-you-should-know-about-skeleton-screens-a820c45a571a)
 
 ---
-This is a simple project made with <3
 @malbonm07
