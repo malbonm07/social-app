@@ -43,6 +43,7 @@ export default {
   },
   data: () => ({
       dialog: false,
+      loadingImport: false,
       svg: {
           pencil: mdiPencilRemoveOutline
       }
