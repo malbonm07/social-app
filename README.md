@@ -1,5 +1,5 @@
 # social-app
---
+
 ## Project setup
 ```
 npm install
