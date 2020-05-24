@@ -1,4 +1,5 @@
 # social-app
+-
 
 ## Project setup
 ```
